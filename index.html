@@ -941,7 +941,7 @@
             <i class="fab fa-telegram"></i> Message on Telegram
           </a>
           <br>
-          <button class="tawkto-btn" onclick="Tawk_API && Tawk_API.toggle()">
+          <button class="tawkto-btn" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
             <i class="fas fa-comments"></i> Start Live Chat
           </button>
         </div>
@@ -995,7 +995,7 @@
     </div>
     <div style="display:flex;align-items:center;gap:.6rem;">
       <span class="float-label">Live Chat</span>
-      <button class="float-live" onclick="Tawk_API && Tawk_API.toggle()">
+      <button class="float-live" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
         <i class="fas fa-comment-dots"></i>
       </button>
     </div>

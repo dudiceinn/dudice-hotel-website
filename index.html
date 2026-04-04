@@ -505,19 +505,36 @@
     }
     .contact-inner {
       max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
-      align-items: start;
     }
-    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+    .contact-map-wrap {
+      position: relative; width: 100%; height: 460px;
+      border: 1px solid var(--border); overflow: hidden; margin-top: 2.5rem;
+    }
+    .contact-map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .contact-map-badge {
+      position: absolute; bottom: 1.2rem; left: 1.2rem;
+      background: var(--bg); border: 1px solid var(--gold);
+      padding: .7rem 1.2rem; display: flex; align-items: center; gap: .7rem;
+    }
+    .contact-map-badge i { color: var(--gold); }
+    .contact-map-badge span { font-size: .78rem; color: var(--light); line-height: 1.4; }
+    .contact-items {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 0; border: 1px solid var(--border); border-top: none;
+    }
     .contact-item {
-      display: flex; gap: 1.2rem; align-items: flex-start;
-      padding: 1.2rem; border: 1px solid var(--border);
-      transition: border-color .3s;
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.4rem 1.2rem; border-right: 1px solid var(--border);
+      transition: border-color .3s; border-bottom: none;
     }
-    .contact-item:hover { border-color: var(--gold); }
+    .contact-item:last-child { border-right: none; }
+    .contact-item:hover { background: var(--surface); }
     .contact-item i { color: var(--gold); font-size: 1.1rem; margin-top: .1rem; }
     .contact-item-label { font-size: .65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-    .contact-item-val { font-size: .9rem; margin-top: .2rem; }
+    .contact-item-val { font-size: .88rem; margin-top: .2rem; }
+    .contact-chat-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;
+    }
     .contact-chat {
       margin-top: 2.5rem; padding: 2rem;
       border: 1px solid var(--border);
@@ -627,7 +644,10 @@
       .rooms-grid { grid-template-columns: 1fr; }
       .amenities-grid { grid-template-columns: repeat(2,1fr); }
       .stats-grid { grid-template-columns: repeat(2,1fr); gap: 2rem; }
-      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-items { grid-template-columns: repeat(2, 1fr); }
+      .contact-item:nth-child(2) { border-right: none; }
+      .contact-item { border-bottom: 1px solid var(--border); }
+      .contact-chat-row { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .rooms-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
       #about { padding: 5rem 1.5rem; }
@@ -894,57 +914,62 @@
   <!-- CONTACT -->
   <section id="contact" style="padding:7rem 4rem;background:var(--bg2);">
     <div class="contact-inner">
-      <div data-aos="fade-right">
-        <span class="section-tag">Get In Touch</span>
-        <h2 class="section-title">We'd Love to <em>Hear</em> From You</h2>
+      <div data-aos="fade-up">
+        <span class="section-tag">Find Us</span>
+        <h2 class="section-title">Where to <em>Find</em> Us</h2>
         <div class="section-line"></div>
-        <p class="section-sub">Have questions? Need a special arrangement? Our team is always ready to assist you.</p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <div class="contact-item-label">Location</div>
-              <div class="contact-item-val">Dudice Hotel, Philippines</div>
-            </div>
+        <p class="section-sub">Located along Roman Highway in Mariveles, Bataan — easily accessible from Manila via SCTEX or the Bataan Peninsula.</p>
+      </div>
+
+      <div class="contact-map-wrap" data-aos="fade-up" data-aos-delay="100">
+        <iframe
+          src="https://www.google.com/maps?q=14.462776,120.539140&z=17&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="contact-map-badge">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Roman Highway, Alas-Asin<br>Mariveles, Bataan</span>
+        </div>
+      </div>
+
+      <div class="contact-items" data-aos="fade-up" data-aos-delay="150">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-val">Roman Highway, Alas-Asin, Mariveles, Bataan</div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <div class="contact-item-label">Phone</div>
-              <div class="contact-item-val">+63 XXX XXX XXXX</div>
-            </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val">+63 XXX XXX XXXX</div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <div class="contact-item-label">Email</div>
-              <div class="contact-item-val">info@dudicehotel.com</div>
-            </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">info@dudicehotel.com</div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-clock"></i>
-            <div>
-              <div class="contact-item-label">Check-in / Check-out</div>
-              <div class="contact-item-val">12:00 PM / 12:00 PM</div>
-            </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <div>
+            <div class="contact-item-label">Check-in / Check-out</div>
+            <div class="contact-item-val">12:00 PM / 12:00 PM</div>
           </div>
         </div>
       </div>
-      <div data-aos="fade-left">
-        <div class="contact-chat">
-          <div class="contact-chat-title">Chat With Us</div>
-          <p class="contact-chat-desc">
-            Prefer to talk directly? Reach us instantly via Telegram or our live chat.
-            We typically respond within minutes.
-          </p>
-          <a href="https://t.me/DudiceMichael" class="chat-btn" target="_blank">
-            <i class="fab fa-telegram"></i> Message on Telegram
-          </a>
-          <br>
-          <button class="tawkto-btn" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
-            <i class="fas fa-comments"></i> Start Live Chat
-          </button>
-        </div>
+
+      <div class="contact-chat-row" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://t.me/DudiceMichael" class="chat-btn" target="_blank" style="justify-content:center;">
+          <i class="fab fa-telegram"></i> Message on Telegram
+        </a>
+        <button class="tawkto-btn" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
+          <i class="fas fa-comments"></i> Start Live Chat
+        </button>
       </div>
     </div>
   </section>

@@ -197,6 +197,17 @@
       font-weight: 500; transition: all .3s;
     }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-location-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      margin-top: 1.8rem; padding: .55rem 1.2rem;
+      border: 1px solid rgba(201,168,76,.4); color: var(--muted);
+      font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; transition: all .3s;
+      animation: fadeUp 1s .9s ease both;
+    }
+    .hero-location-btn i { color: var(--gold); }
+    .hero-location-btn span { color: var(--gold); text-decoration: underline; }
+    .hero-location-btn:hover { border-color: var(--gold); color: var(--light); }
     .hero-scroll {
       position: absolute; bottom: 2.5rem; left: 50%;
       transform: translateX(-50%); z-index: 2;
@@ -691,10 +702,77 @@
         <a href="https://hotel-reservation-bot.onrender.com" class="btn-primary">Reserve Your Stay</a>
         <a href="#rooms" class="btn-outline">Explore Rooms</a>
       </div>
+      <a href="#contact" class="hero-location-btn">
+        <i class="fas fa-map-marker-alt"></i>
+        Roman Highway, Alas-Asin, Mariveles, Bataan — <span>View on Map</span>
+      </a>
     </div>
     <div class="hero-scroll">
       <span>Scroll</span>
       <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding:7rem 4rem;background:var(--bg2);">
+    <div class="contact-inner">
+      <div data-aos="fade-up">
+        <span class="section-tag">Find Us</span>
+        <h2 class="section-title">Where to <em>Find</em> Us</h2>
+        <div class="section-line"></div>
+        <p class="section-sub">Located along Roman Highway in Mariveles, Bataan — easily accessible from Manila via SCTEX or the Bataan Peninsula.</p>
+      </div>
+
+      <div class="contact-map-wrap" data-aos="fade-up" data-aos-delay="100">
+        <iframe
+          src="https://www.google.com/maps?q=14.462776,120.539140&z=17&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="contact-map-badge">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Roman Highway, Alas-Asin<br>Mariveles, Bataan</span>
+        </div>
+      </div>
+
+      <div class="contact-items" data-aos="fade-up" data-aos-delay="150">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-val">Roman Highway, Alas-Asin, Mariveles, Bataan</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val">+63 XXX XXX XXXX</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">info@dudicehotel.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <div>
+            <div class="contact-item-label">Check-in / Check-out</div>
+            <div class="contact-item-val">12:00 PM / 12:00 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-chat-row" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://t.me/DudiceMichael" class="chat-btn" target="_blank" style="justify-content:center;">
+          <i class="fab fa-telegram"></i> Message on Telegram
+        </a>
+        <button class="tawkto-btn" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
+          <i class="fas fa-comments"></i> Start Live Chat
+        </button>
+      </div>
     </div>
   </section>
 
@@ -908,69 +986,6 @@
     <div class="cta-btns" data-aos="fade-up" data-aos-delay="300">
       <a href="https://hotel-reservation-bot.onrender.com" class="btn-primary">Book Your Stay</a>
       <a href="https://hotel-reservation-bot.onrender.com?check=status" class="btn-outline">Check Reservation</a>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" style="padding:7rem 4rem;background:var(--bg2);">
-    <div class="contact-inner">
-      <div data-aos="fade-up">
-        <span class="section-tag">Find Us</span>
-        <h2 class="section-title">Where to <em>Find</em> Us</h2>
-        <div class="section-line"></div>
-        <p class="section-sub">Located along Roman Highway in Mariveles, Bataan — easily accessible from Manila via SCTEX or the Bataan Peninsula.</p>
-      </div>
-
-      <div class="contact-map-wrap" data-aos="fade-up" data-aos-delay="100">
-        <iframe
-          src="https://www.google.com/maps?q=14.462776,120.539140&z=17&output=embed"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        <div class="contact-map-badge">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Roman Highway, Alas-Asin<br>Mariveles, Bataan</span>
-        </div>
-      </div>
-
-      <div class="contact-items" data-aos="fade-up" data-aos-delay="150">
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <div>
-            <div class="contact-item-label">Address</div>
-            <div class="contact-item-val">Roman Highway, Alas-Asin, Mariveles, Bataan</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <div>
-            <div class="contact-item-label">Phone</div>
-            <div class="contact-item-val">+63 XXX XXX XXXX</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-val">info@dudicehotel.com</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-clock"></i>
-          <div>
-            <div class="contact-item-label">Check-in / Check-out</div>
-            <div class="contact-item-val">12:00 PM / 12:00 PM</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-chat-row" data-aos="fade-up" data-aos-delay="200">
-        <a href="https://t.me/DudiceMichael" class="chat-btn" target="_blank" style="justify-content:center;">
-          <i class="fab fa-telegram"></i> Message on Telegram
-        </a>
-        <button class="tawkto-btn" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
-          <i class="fas fa-comments"></i> Start Live Chat
-        </button>
-      </div>
     </div>
   </section>
 

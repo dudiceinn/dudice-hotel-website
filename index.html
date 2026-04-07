@@ -308,10 +308,8 @@
       position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(201,168,76,.1), transparent);
     }
-    .about-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted); font-size: 4rem;
+    .about-img-frame img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .about-accent {
       position: absolute; bottom: -1.5rem; right: -1.5rem;
@@ -367,9 +365,8 @@
     .room-img {
       height: 220px; background: var(--bg2);
       position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
     }
-    .room-img i { font-size: 3rem; color: var(--border); }
+    .room-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .room-img-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, var(--bg3) 0%, transparent 60%);
@@ -702,7 +699,7 @@
         <a href="https://hotel-reservation-bot.onrender.com" class="btn-primary">Reserve Your Stay</a>
         <a href="#rooms" class="btn-outline">Explore Rooms</a>
       </div>
-      <a href="#contact" class="hero-location-btn">
+      <a href="https://www.google.com/maps/place/Dudice+Travellers+Inn/@14.4627757,120.5391242,17z/" target="_blank" class="hero-location-btn">
         <i class="fas fa-map-marker-alt"></i>
         Roman Highway, Alas-Asin, Mariveles, Bataan — <span>View on Map</span>
       </a>
@@ -725,7 +722,7 @@
 
       <div class="contact-map-wrap" data-aos="fade-up" data-aos-delay="100">
         <iframe
-          src="https://www.google.com/maps?q=14.462776,120.539140&z=17&output=embed"
+          src="https://www.google.com/maps?q=Dudice+Travellers+Inn,+Mariveles,+Bataan&z=17&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
         <div class="contact-map-badge">
@@ -746,7 +743,7 @@
           <i class="fas fa-phone"></i>
           <div>
             <div class="contact-item-label">Phone</div>
-            <div class="contact-item-val">+63 XXX XXX XXXX</div>
+            <div class="contact-item-val">+63 995 130 2152</div>
           </div>
         </div>
         <div class="contact-item">
@@ -780,7 +777,7 @@
   <div id="stats">
     <div class="stats-grid">
       <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
-        <div class="stat-num" data-count="7">0</div>
+        <div class="stat-num" data-count="5">0</div>
         <div class="stat-label">Room Types</div>
       </div>
       <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
@@ -803,9 +800,7 @@
     <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
       <div class="about-img-wrap" data-aos="fade-right">
         <div class="about-img-frame">
-          <div class="about-img-placeholder">
-            <i class="fas fa-hotel"></i>
-          </div>
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/1.jpg" alt="Dudice Travellers Inn exterior" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="about-accent"></div>
         <div class="about-badge">
@@ -818,13 +813,13 @@
         <h2 class="section-title">A Sanctuary of <em>Elegance</em></h2>
         <div class="section-line"></div>
         <p class="section-sub" style="margin-bottom:1.5rem;">
-          Nestled in the heart of the city, Dudice Hotel is more than a place to stay —
-          it is an experience crafted with passion, luxury, and an unwavering commitment
-          to making every guest feel at home.
+          Located along Roman Highway in Alas-Asin, Mariveles, Bataan, Dudice Traveller's Inn
+          is your home away from home — offering clean, comfortable, and affordable accommodations
+          with 24-hour service and a warm Filipino hospitality.
         </p>
         <p class="section-sub" style="margin-bottom:2rem;">
-          From our elegantly appointed rooms to our warm, personalized service,
-          we set the standard for refined hospitality.
+          With air-conditioned rooms, free WiFi, private parking, and friendly staff,
+          we make sure every guest enjoys a relaxing and hassle-free stay.
         </p>
         <div class="about-features">
           <div class="about-feat" data-aos="fade-left" data-aos-delay="100">
@@ -858,13 +853,13 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="0">
         <div class="room-img">
-          <i class="fas fa-bed"></i>
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Standard Room" style="width:100%;height:100%;object-fit:cover;">
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Classic</span>
         </div>
         <div class="room-body">
-          <div class="room-name">Regular Room</div>
-          <p class="room-desc">A cozy, well-appointed room perfect for solo travelers or couples seeking comfort and value.</p>
+          <div class="room-name">Standard Room</div>
+          <p class="room-desc">A cozy, air-conditioned room with a double bed — perfect for solo travelers or couples seeking comfort and value.</p>
           <div class="room-meta">
             <div class="room-rate"><strong>₱500</strong> <small>/ 12hrs</small></div>
             <div class="room-guests"><i class="fas fa-user"></i> Up to 2 guests</div>
@@ -875,13 +870,13 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="100">
         <div class="room-img">
-          <i class="fas fa-bed"></i>
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/2.jpg" alt="Twin Room" style="width:100%;height:100%;object-fit:cover;">
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Popular</span>
         </div>
         <div class="room-body">
-          <div class="room-name">Suite Room</div>
-          <p class="room-desc">Our signature suite blends sophistication with comfort — a spacious retreat for the discerning guest.</p>
+          <div class="room-name">Twin Room</div>
+          <p class="room-desc">A spacious room with two double beds and air conditioning — ideal for families or groups traveling together.</p>
           <div class="room-meta">
             <div class="room-rate"><strong>₱1,500</strong> <small>/ 24hrs</small></div>
             <div class="room-guests"><i class="fas fa-user"></i> Up to 2 guests</div>
@@ -892,13 +887,13 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="200">
         <div class="room-img">
-          <i class="fas fa-door-open"></i>
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/4.jpg" alt="Budget Twin Room" style="width:100%;height:100%;object-fit:cover;">
           <div class="room-img-overlay"></div>
-          <span class="room-type-tag">Scenic</span>
+          <span class="room-type-tag">Budget</span>
         </div>
         <div class="room-body">
-          <div class="room-name">Veranda Deluxe</div>
-          <p class="room-desc">Wake up to breathtaking views from your private veranda — luxury redefined in every detail.</p>
+          <div class="room-name">Budget Twin</div>
+          <p class="room-desc">A clean, air-conditioned room with two single beds — a great budget-friendly option for friends or colleagues.</p>
           <div class="room-meta">
             <div class="room-rate"><strong>₱2,000</strong> <small>/ 24hrs</small></div>
             <div class="room-guests"><i class="fas fa-user"></i> Up to 2 guests</div>
@@ -1018,9 +1013,9 @@
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 Dudice Hotel. All rights reserved.</span>
       <div class="footer-socials">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://t.me/DudiceMichael"><i class="fab fa-telegram"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/dudiceinn/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://t.me/DudiceMichael" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.google.com/maps/place/Dudice+Travellers+Inn/@14.4627757,120.5391242,17z/" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
       </div>
     </div>
   </footer>

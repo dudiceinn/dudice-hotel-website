@@ -26,12 +26,10 @@ CNAME        — GitHub Pages custom domain config (dudicehotel.com)
 - **Telegram Contact**: `@DudiceMichael`
 
 ## Known Incomplete Items
-- Phone number is placeholder: `+63 XXX XXX XXXX`
-- Stats claim "7 Room Types" but only 3 rooms are displayed
-- Facebook and Instagram social links point to `#`
-- No actual hotel images — using Font Awesome icons as placeholders
-- Contact address is vague ("Philippines" with no specific location)
 - No meta description or Open Graph tags
+- Instagram social link replaced with Google Maps link (no Instagram account found)
+- Room prices may need verification with current rates
+- Images are hotlinked from directhotels.com — consider hosting locally
 
 ## Development Notes
 - No build system — edit `index.html` directly and push to deploy

@@ -262,32 +262,6 @@
       max-width: 520px;
     }
 
-    /* ─── STATS BAR ─── */
-    #stats {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 4rem;
-    }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center;
-    }
-    .stat-item { position: relative; }
-    .stat-item::after {
-      content: ''; position: absolute; right: 0; top: 20%;
-      height: 60%; width: 1px; background: var(--border);
-    }
-    .stat-item:last-child::after { display: none; }
-    .stat-num {
-      font-family: var(--ff-head);
-      font-size: 3rem; font-weight: 700; color: var(--gold);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: .7rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--muted); margin-top: .5rem;
-    }
 
     /* ─── ABOUT ─── */
     #about {
@@ -623,7 +597,6 @@
       #about { grid-template-columns: 1fr; gap: 3rem; }
       .rooms-grid { grid-template-columns: 1fr; }
       .amenities-grid { grid-template-columns: repeat(2,1fr); }
-      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 2rem; }
       .contact-items { grid-template-columns: repeat(2, 1fr); }
       .contact-item:nth-child(2) { border-right: none; }
       .contact-item { border-bottom: 1px solid var(--border); }
@@ -746,26 +719,6 @@
   </section>
 
   <!-- STATS -->
-  <div id="stats">
-    <div class="stats-grid">
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
-        <div class="stat-num" data-count="7">0</div>
-        <div class="stat-label">Room Types</div>
-      </div>
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="stat-num" data-count="500">0</div>
-        <div class="stat-label">Happy Guests</div>
-      </div>
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="stat-num" data-count="24">0</div>
-        <div class="stat-label">Hour Service</div>
-      </div>
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="stat-num" data-count="100">0</div>
-        <div class="stat-label">% Commitment</div>
-      </div>
-    </div>
-  </div>
 
   <!-- ABOUT -->
   <section id="about" style="padding: 7rem 4rem;">
@@ -1117,30 +1070,6 @@
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // ─── COUNTER ANIMATION ───
-    function animateCounter(el, target, duration = 1800) {
-      let start = 0;
-      const step = timestamp => {
-        if (!start) start = timestamp;
-        const progress = Math.min((timestamp - start) / duration, 1);
-        el.textContent = Math.floor(progress * target);
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = target;
-      };
-      requestAnimationFrame(step);
-    }
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          document.querySelectorAll('[data-count]').forEach(el => {
-            animateCounter(el, parseInt(el.dataset.count));
-          });
-          observer.disconnect();
-        }
-      });
-    }, { threshold: .3 });
-    const statsEl = document.getElementById('stats');
-    if (statsEl) observer.observe(statsEl);
 
     // ─── PARTICLES ───
     particlesJS('particles-js', {

@@ -613,35 +613,6 @@
     }
     .footer-socials a:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
 
-    /* ─── FLOATING CHAT BUTTON ─── */
-    .float-chat {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
-      display: flex; flex-direction: column; gap: .7rem; align-items: flex-end;
-    }
-    .float-tele {
-      background: #229ED9; color: white;
-      width: 52px; height: 52px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; text-decoration: none;
-      box-shadow: 0 4px 20px rgba(34,158,217,.4);
-      transition: all .3s; cursor: none;
-    }
-    .float-tele:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(34,158,217,.6); }
-    .float-live {
-      background: var(--gold); color: white;
-      width: 52px; height: 52px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; cursor: none;
-      box-shadow: 0 4px 20px rgba(14,138,138,.4);
-      transition: all .3s; border: none;
-    }
-    .float-live:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(14,138,138,.6); }
-    .float-label {
-      background: rgba(250,248,244,.95); color: var(--text);
-      font-size: .7rem; letter-spacing: 1px; padding: .3rem .8rem;
-      border: 1px solid var(--border); white-space: nowrap;
-      backdrop-filter: blur(10px);
-    }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
@@ -854,12 +825,12 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="0">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Standard Room" style="width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Regular Room" style="width:100%;height:100%;object-fit:cover;">
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Classic</span>
         </div>
         <div class="room-body">
-          <div class="room-name">Standard Room</div>
+          <div class="room-name">Regular Room</div>
           <p class="room-desc">A cozy, air-conditioned room with a double bed — perfect for solo travelers or couples seeking comfort and value.</p>
           <div class="room-meta">
             <div class="room-rate"><strong>₱500</strong> <small>/ 12hrs</small></div>
@@ -871,12 +842,12 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="100">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/2.jpg" alt="Twin Room" style="width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/2.jpg" alt="Family Room" style="width:100%;height:100%;object-fit:cover;">
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Popular</span>
         </div>
         <div class="room-body">
-          <div class="room-name">Twin Room</div>
+          <div class="room-name">Family Room</div>
           <p class="room-desc">A spacious room with two double beds and air conditioning — ideal for families or groups traveling together.</p>
           <div class="room-meta">
             <div class="room-rate"><strong>₱1,500</strong> <small>/ 24hrs</small></div>
@@ -888,12 +859,12 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="200">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/4.jpg" alt="Budget Twin Room" style="width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/4.jpg" alt="Twin Room" style="width:100%;height:100%;object-fit:cover;">
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Budget</span>
         </div>
         <div class="room-body">
-          <div class="room-name">Budget Twin</div>
+          <div class="room-name">Twin Room</div>
           <p class="room-desc">A clean, air-conditioned room with two single beds — a great budget-friendly option for friends or colleagues.</p>
           <div class="room-meta">
             <div class="room-rate"><strong>₱2,000</strong> <small>/ 24hrs</small></div>
@@ -1022,20 +993,6 @@
   </footer>
 
   <!-- FLOATING CHAT BUTTONS -->
-  <div class="float-chat">
-    <div style="display:flex;align-items:center;gap:.6rem;">
-      <span class="float-label">Chat on Telegram</span>
-      <a href="https://t.me/DudiceMichael" class="float-tele" target="_blank">
-        <i class="fab fa-telegram"></i>
-      </a>
-    </div>
-    <div style="display:flex;align-items:center;gap:.6rem;">
-      <span class="float-label">Live Chat</span>
-      <button class="float-live" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
-        <i class="fas fa-comment-dots"></i>
-      </button>
-    </div>
-  </div>
 
   <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

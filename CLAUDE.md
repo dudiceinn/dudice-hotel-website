@@ -34,6 +34,6 @@ CNAME        — GitHub Pages custom domain config (dudicehotel.com)
 ## Development Notes
 - No build system — edit `index.html` directly and push to deploy
 - No package.json, no dependencies to install
-- CSS uses a gold/dark theme via custom properties (e.g., `--gold`, `--dark`)
+- CSS uses a teal/light sandy theme via custom properties (e.g., `--gold` is teal #0e8a8a, `--bg` is cream #faf8f4)
 - Responsive breakpoint is 900px
 - Custom cursor is hidden on mobile via CSS

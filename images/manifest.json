@@ -1,0 +1,78 @@
+{
+  "regular-room": [
+    "regular-room-01.jpg",
+    "regular-room-02.jpg"
+  ],
+  "veranda-room": [
+    "veranda-room-01.jpg",
+    "veranda-room-02.jpg",
+    "veranda-room-03.jpg",
+    "veranda-room-04.jpg",
+    "veranda-room-05.jpg",
+    "veranda-room-06.jpg",
+    "veranda-room-07.jpg",
+    "veranda-room-08.jpg",
+    "veranda-room-09.jpg",
+    "veranda-room-10.jpg",
+    "veranda-room-11.jpg",
+    "veranda-room-12.jpg"
+  ],
+  "suite-room": [
+    "suite-room-01.jpg",
+    "suite-room-02.jpg",
+    "suite-room-03.jpg",
+    "suite-room-04.jpg",
+    "suite-room-05.jpg",
+    "suite-room-06.jpg",
+    "suite-room-07.jpg",
+    "suite-room-08.jpg",
+    "suite-room-09.jpg"
+  ],
+  "twin-room": [
+    "twin-room-01.jpg",
+    "twin-room-02.jpg",
+    "twin-room-03.jpg",
+    "twin-room-04.jpg",
+    "twin-room-05.jpg",
+    "twin-room-06.jpg",
+    "twin-room-07.jpg",
+    "twin-room-08.jpg",
+    "twin-room-09.jpg",
+    "twin-room-10.jpg",
+    "twin-room-11.jpg"
+  ],
+  "veranda-deluxe": [
+    "veranda-deluxe-01.jpg",
+    "veranda-deluxe-02.jpg",
+    "veranda-deluxe-03.jpg",
+    "veranda-deluxe-04.jpg",
+    "veranda-deluxe-05.jpg",
+    "veranda-deluxe-06.jpg",
+    "veranda-deluxe-07.jpg",
+    "veranda-deluxe-08.jpg",
+    "veranda-deluxe-09.jpg",
+    "veranda-deluxe-10.jpg"
+  ],
+  "double-deck": [
+    "double-deck-01.jpg",
+    "double-deck-02.jpg",
+    "double-deck-03.jpg",
+    "double-deck-04.jpg",
+    "double-deck-05.jpg",
+    "double-deck-06.jpg",
+    "double-deck-07.jpg",
+    "double-deck-08.jpg",
+    "double-deck-09.jpg",
+    "double-deck-10.jpg",
+    "double-deck-11.jpg",
+    "double-deck-12.jpg"
+  ],
+  "family-room": [
+    "family-room-01.jpg",
+    "family-room-02.jpg",
+    "family-room-03.jpg",
+    "family-room-04.jpg",
+    "family-room-05.jpg",
+    "family-room-06.jpg"
+  ]
+}

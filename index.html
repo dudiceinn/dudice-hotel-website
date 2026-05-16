@@ -15,6 +15,9 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <!-- GLightbox (room photo galleries) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
   <style>
     /* ─── RESET & BASE ─── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -344,9 +347,11 @@
       height: 220px; background: var(--bg2);
       position: relative; overflow: hidden;
     }
-    .room-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .room-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .room-img a.room-img-link { display: block; width: 100%; height: 100%; }
+    .room-card:hover .room-img img { transform: scale(1.04); }
     .room-img-overlay {
-      position: absolute; inset: 0;
+      position: absolute; inset: 0; pointer-events: none;
       background: linear-gradient(to top, var(--bg3) 0%, transparent 40%);
     }
     .room-type-tag {
@@ -354,7 +359,16 @@
       background: var(--gold); color: #fff;
       font-size: .6rem; letter-spacing: 2px; text-transform: uppercase;
       padding: .3rem .8rem; font-weight: 600;
+      pointer-events: none;
     }
+    .gallery-badge {
+      position: absolute; bottom: 1rem; right: 1rem;
+      background: rgba(0,0,0,.6); color: #fff;
+      font-size: .7rem; padding: .35rem .7rem;
+      border-radius: 999px; display: inline-flex; align-items: center; gap: .4rem;
+      pointer-events: none; backdrop-filter: blur(4px);
+    }
+    .gallery-badge i { font-size: .75rem; }
     .room-body { padding: 1.5rem; }
     .room-name {
       font-family: var(--ff-head); font-size: 1.3rem;
@@ -657,6 +671,7 @@
       #cta { padding: 5rem 1.5rem; }
       footer { padding: 3rem 1.5rem; }
       .hero-location-btn { font-size: .6rem; letter-spacing: 1px; padding: .5rem .8rem; }
+      .hero-scroll { display: none; }
     }
 
     /* ─── SMALL PHONES ─── */
@@ -861,9 +876,13 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="0">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Regular Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/regular-room-01.jpg" class="room-img-link glightbox" data-gallery="regular-room" data-glightbox="title: Regular Room">
+            <img src="images/regular-room-01.jpg" alt="Regular Room with double bed" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/regular-room-02.jpg" class="glightbox" data-gallery="regular-room" data-glightbox="title: Regular Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Classic</span>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 2 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Regular Room</div>
@@ -877,8 +896,22 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="100">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Veranda Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/veranda-room-01.jpg" class="room-img-link glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room">
+            <img src="images/veranda-room-01.jpg" alt="Veranda Room with private veranda" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/veranda-room-02.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-03.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-04.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-05.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-06.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-07.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-08.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-09.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-10.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-11.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-room-12.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Veranda Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 12 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Veranda Room</div>
@@ -892,8 +925,19 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="200">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Suite Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/suite-room-01.jpg" class="room-img-link glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room">
+            <img src="images/suite-room-01.jpg" alt="Premium Suite Room interior" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/suite-room-02.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-03.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-04.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-05.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-06.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-07.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-08.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/suite-room-09.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 9 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Suite Room</div>
@@ -907,8 +951,21 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="0">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/4.jpg" alt="Twin Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/twin-room-01.jpg" class="room-img-link glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room">
+            <img src="images/twin-room-01.jpg" alt="Twin Room with two single beds" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/twin-room-02.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-03.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-04.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-05.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-06.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-07.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-08.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Bathroom" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-09.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Bathroom" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-10.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Lavatory" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/twin-room-11.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Shower" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 11 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Twin Room</div>
@@ -922,9 +979,21 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="100">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/5.jpg" alt="Veranda Deluxe Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/veranda-deluxe-01.jpg" class="room-img-link glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe">
+            <img src="images/veranda-deluxe-01.jpg" alt="Veranda Deluxe Room interior" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/veranda-deluxe-02.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-03.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-04.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-05.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-06.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-07.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-08.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-09.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/veranda-deluxe-10.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Veranda Deluxe" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Popular</span>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 10 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Veranda Deluxe</div>
@@ -938,8 +1007,22 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="200">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/2.jpg" alt="Double Deck Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/double-deck-01.jpg" class="room-img-link glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck">
+            <img src="images/double-deck-01.jpg" alt="Double Deck Room with bunk beds" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/double-deck-02.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-03.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-04.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-05.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-06.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-07.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-08.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-09.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-10.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-11.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/double-deck-12.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 12 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Double Deck</div>
@@ -953,9 +1036,17 @@
 
       <div class="room-card" data-aos="fade-up" data-aos-delay="0">
         <div class="room-img">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/2.jpg" alt="Family Room" style="width:100%;height:100%;object-fit:cover;">
+          <a href="images/family-room-01.jpg" class="room-img-link glightbox" data-gallery="family-room" data-glightbox="title: Family Room">
+            <img src="images/family-room-01.jpg" alt="Spacious Family Room" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </a>
+          <a href="images/family-room-02.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/family-room-03.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/family-room-04.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/family-room-05.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
+          <a href="images/family-room-06.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
           <div class="room-img-overlay"></div>
           <span class="room-type-tag">Premium</span>
+          <span class="gallery-badge"><i class="fas fa-images"></i> 6 photos</span>
         </div>
         <div class="room-body">
           <div class="room-name">Family Room</div>
@@ -1090,6 +1181,12 @@
   <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+    }
+  </script>
 
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">

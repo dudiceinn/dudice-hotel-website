@@ -1,0 +1,10 @@
+# Source photo folders — kept locally, not pushed to GitHub Pages.
+# Resized/optimized versions live in images/ and are the ones the site uses.
+/Dudice/
+/Dudice Hotel - Edited/
+
+# Pre-existing unoptimized photo dump inside images/.
+/images/Dudice Hotel - Edited/
+
+# Claude Code working files
+.claude/

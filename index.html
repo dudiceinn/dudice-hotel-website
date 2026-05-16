@@ -414,6 +414,16 @@
     }
     .amenity-card:hover::before { height: 100%; }
     .amenity-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    a.amenity-card { text-decoration: none; color: inherit; display: block; cursor: pointer; }
+    .amenity-card-tip {
+      display: inline-flex; align-items: center; gap: .35rem;
+      margin-top: 1rem; padding: .35rem .9rem;
+      font-size: .7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold);
+      border-radius: 999px; position: relative; z-index: 1;
+      transition: all .3s;
+    }
+    a.amenity-card:hover .amenity-card-tip { background: var(--gold); color: #fff; }
     .amenity-icon {
       width: 60px; height: 60px; margin: 0 auto 1.5rem;
       border: 1px solid var(--border); border-radius: 50%;
@@ -1167,11 +1177,14 @@
           <div class="amenity-name">Free Parking</div>
           <p class="amenity-desc">Complimentary secure parking available for all our guests.</p>
         </div>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="100">
+        <a class="amenity-card glightbox" href="images/streaming-01.jpg" data-gallery="streaming" data-glightbox="title: In-Room Streaming" data-aos="fade-up" data-aos-delay="100">
           <div class="amenity-icon"><i class="fas fa-play"></i></div>
           <div class="amenity-name">In-Room Streaming</div>
-          <p class="amenity-desc">Watch movies and shows through our in-house streaming app — no extra subscription needed.</p>
-        </div>
+          <p class="amenity-desc">Indulge in curated entertainment on our private in-room streaming platform — featuring Netflix, Apple TV+, Prime Video, and more. Your favorite content, beautifully on demand.</p>
+          <span class="amenity-card-tip"><i class="fas fa-images"></i> View photos</span>
+        </a>
+        <a href="images/streaming-02.jpg" class="glightbox" data-gallery="streaming" data-glightbox="title: In-Room Streaming" style="display:none" aria-hidden="true" tabindex="-1"></a>
+        <a href="images/streaming-03.jpg" class="glightbox" data-gallery="streaming" data-glightbox="title: In-Room Streaming" style="display:none" aria-hidden="true" tabindex="-1"></a>
         <div class="amenity-card" data-aos="fade-up" data-aos-delay="200">
           <div class="amenity-icon"><i class="fas fa-bath"></i></div>
           <div class="amenity-name">Private Bath</div>

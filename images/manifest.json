@@ -74,5 +74,27 @@
     "family-room-04.jpg",
     "family-room-05.jpg",
     "family-room-06.jpg"
+  ],
+  "lobby": [
+    "lobby-01.jpg"
+  ],
+  "hallway": [
+    "hallway-01.jpg",
+    "hallway-02.jpg",
+    "hallway-03.jpg",
+    "hallway-04.jpg"
+  ],
+  "building": [
+    "building-01.jpg",
+    "building-02.jpg",
+    "building-03.jpg",
+    "building-04.jpg",
+    "building-05.jpg",
+    "building-06.jpg",
+    "building-07.jpg",
+    "building-08.jpg",
+    "building-09.jpg",
+    "building-10.jpg",
+    "building-11.jpg"
   ]
 }

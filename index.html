@@ -375,12 +375,32 @@
       margin-bottom: .4rem;
     }
     .room-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .room-rates {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      padding-top: 1rem; margin-bottom: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .room-rate { display: flex; align-items: baseline; gap: .3rem; }
+    .room-rate strong {
+      font-family: var(--ff-head); font-size: 1.25rem;
+      color: var(--gold); font-weight: 600;
+    }
+    .room-rate small { font-size: .7rem; color: var(--muted); }
     .room-meta {
       display: flex; justify-content: space-between; align-items: center;
-      padding-top: 1rem; border-top: 1px solid var(--border);
     }
     .room-guests { font-size: .75rem; color: var(--muted); }
     .room-guests i { margin-right: .3rem; }
+    .rates-note {
+      max-width: 1200px; margin: 2rem auto 0; padding: 1.5rem;
+      text-align: center; font-size: .8rem; color: var(--muted);
+      border-top: 1px solid var(--border); line-height: 1.7;
+    }
+    .rates-note a {
+      color: var(--gold); text-decoration: none; font-weight: 600;
+      border-bottom: 1px solid var(--gold); padding-bottom: 1px;
+    }
+    .rates-note a:hover { color: var(--gold-dk); border-color: var(--gold-dk); }
     .room-link {
       display: block; text-align: center;
       padding: .8rem; margin: 0 1.5rem 1.5rem;
@@ -899,6 +919,10 @@
         <div class="room-body">
           <div class="room-name">Regular Room</div>
           <p class="room-desc">A cozy, air-conditioned room with a double bed — perfect for solo travelers or couples seeking comfort and value.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱1,000</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱1,800</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 3 guests</div>
           </div>
@@ -928,6 +952,10 @@
         <div class="room-body">
           <div class="room-name">Veranda Room</div>
           <p class="room-desc">An air-conditioned room with a private veranda — enjoy fresh air and scenic views right from your doorstep.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱1,300</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱2,200</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 3 guests</div>
           </div>
@@ -954,6 +982,10 @@
         <div class="room-body">
           <div class="room-name">Suite Room</div>
           <p class="room-desc">A premium air-conditioned suite with extra space and comfort — ideal for guests who want a more elevated stay.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱1,200</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱2,000</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 3 guests</div>
           </div>
@@ -982,6 +1014,10 @@
         <div class="room-body">
           <div class="room-name">Twin Room</div>
           <p class="room-desc">A clean, air-conditioned room with two single beds — a great option for friends or colleagues traveling together.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱1,200</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱2,000</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 3 guests</div>
           </div>
@@ -1010,6 +1046,10 @@
         <div class="room-body">
           <div class="room-name">Veranda Deluxe</div>
           <p class="room-desc">A spacious deluxe room with a private veranda — the perfect blend of comfort, style, and relaxation.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱1,500</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱2,300</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 3 guests</div>
           </div>
@@ -1039,6 +1079,10 @@
         <div class="room-body">
           <div class="room-name">Double Deck</div>
           <p class="room-desc">A room with double-deck beds accommodating up to 6 — perfect for groups and barkadas on a budget.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱1,800</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱2,500</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 6 guests</div>
           </div>
@@ -1063,6 +1107,10 @@
         <div class="room-body">
           <div class="room-name">Family Room</div>
           <p class="room-desc">Our largest and most spacious room — designed for families who want plenty of space and maximum comfort.</p>
+          <div class="room-rates">
+            <span class="room-rate"><strong>₱3,000</strong><small>/ 12hrs</small></span>
+            <span class="room-rate"><strong>₱4,000</strong><small>/ 24hrs</small></span>
+          </div>
           <div class="room-meta">
             <div class="room-guests"><i class="fas fa-user"></i> Up to 6 guests</div>
           </div>
@@ -1071,6 +1119,10 @@
       </div>
 
     </div>
+    <p class="rates-note" data-aos="fade-up">
+      Walk-in rates shown. Additional guests beyond room base: ₱250 per person. <br>
+      Group, long-stay, or corporate bookings — <a href="https://t.me/DudiceSupportBot" target="_blank">message us on Telegram</a> for tailored rates.
+    </p>
   </section>
 
   <!-- EXPLORE THE HOTEL -->

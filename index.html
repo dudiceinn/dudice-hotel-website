@@ -31,7 +31,7 @@
       --surface:  rgba(14,138,138,0.04);
       --border:   rgba(14,138,138,0.18);
       --text:     #2c2a28;
-      --muted:    #7a7670;
+      --muted:    #5a564f;
       --ff-head:  'Playfair Display', serif;
       --ff-body:  'Montserrat', sans-serif;
       --ff-ital:  'Cormorant Garamond', serif;
@@ -92,14 +92,14 @@
       font-family: var(--ff-head);
       font-size: 1.6rem; font-weight: 700;
       color: var(--gold);
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       text-decoration: none;
     }
     .nav-logo span { color: var(--text); font-weight: 400; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       color: var(--text); text-decoration: none;
-      font-size: .78rem; letter-spacing: 2px; text-transform: uppercase;
+      font-size: .86rem; letter-spacing: 1px; text-transform: uppercase;
       font-weight: 500;
       position: relative; padding-bottom: 4px;
       transition: color .3s;
@@ -114,8 +114,8 @@
     .nav-btn {
       background: transparent; border: 1px solid var(--gold);
       color: var(--gold); padding: .6rem 1.6rem;
-      font-family: var(--ff-body); font-size: .75rem;
-      letter-spacing: 2px; text-transform: uppercase;
+      font-family: var(--ff-body); font-size: .85rem;
+      letter-spacing: 1px; text-transform: uppercase;
       cursor: none; transition: all .3s;
       text-decoration: none;
     }
@@ -152,7 +152,7 @@
     }
     .hero-tag {
       display: inline-block;
-      font-size: .7rem; letter-spacing: 5px; text-transform: uppercase;
+      font-size: .78rem; letter-spacing: 2.5px; text-transform: uppercase;
       color: var(--gold); margin-bottom: 1.5rem;
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
       padding: .4rem 1.6rem;
@@ -183,7 +183,7 @@
     .btn-primary {
       background: var(--gold); color: #fff;
       padding: .9rem 2.4rem; text-decoration: none;
-      font-size: .75rem; letter-spacing: 3px; text-transform: uppercase;
+      font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase;
       font-weight: 600; transition: all .3s;
       position: relative; overflow: hidden;
     }
@@ -197,7 +197,7 @@
     .btn-outline {
       border: 1px solid var(--border); color: var(--text);
       padding: .9rem 2.4rem; text-decoration: none;
-      font-size: .75rem; letter-spacing: 3px; text-transform: uppercase;
+      font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase;
       font-weight: 500; transition: all .3s;
     }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
@@ -219,7 +219,7 @@
       animation: fadeUp 1s 1s ease both;
     }
     .hero-scroll span {
-      font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+      font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase;
       color: var(--muted);
     }
     .scroll-line {
@@ -245,7 +245,7 @@
     /* ─── SECTION BASE ─── */
     section { padding: 7rem 4rem; }
     .section-tag {
-      font-size: .65rem; letter-spacing: 5px; text-transform: uppercase;
+      font-size: .72rem; letter-spacing: 2.5px; text-transform: uppercase;
       color: var(--gold); margin-bottom: 1rem; display: block;
     }
     .section-title {
@@ -306,7 +306,7 @@
       text-align: center;
     }
     .about-badge .num { font-size: 2rem; font-weight: 700; display: block; }
-    .about-badge .txt { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; }
+    .about-badge .txt { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; }
     .about-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
     .about-feat {
       display: flex; align-items: center; gap: 1rem;
@@ -317,7 +317,7 @@
     }
     .about-feat:hover { border-color: var(--gold); background: rgba(14,138,138,.05); }
     .about-feat i { color: var(--gold); font-size: 1.1rem; width: 20px; }
-    .about-feat span { font-size: .82rem; letter-spacing: 1px; }
+    .about-feat span { font-size: .92rem; letter-spacing: 1px; }
 
     /* ─── ROOMS ─── */
     #rooms {
@@ -357,24 +357,24 @@
     .room-type-tag {
       position: absolute; top: 1rem; left: 1rem;
       background: var(--gold); color: #fff;
-      font-size: .6rem; letter-spacing: 2px; text-transform: uppercase;
+      font-size: .68rem; letter-spacing: 1px; text-transform: uppercase;
       padding: .3rem .8rem; font-weight: 600;
       pointer-events: none;
     }
     .gallery-badge {
       position: absolute; bottom: 1rem; right: 1rem;
       background: rgba(0,0,0,.6); color: #fff;
-      font-size: .7rem; padding: .35rem .7rem;
+      font-size: .78rem; padding: .35rem .7rem;
       border-radius: 999px; display: inline-flex; align-items: center; gap: .4rem;
       pointer-events: none; backdrop-filter: blur(4px);
     }
-    .gallery-badge i { font-size: .75rem; }
+    .gallery-badge i { font-size: .85rem; }
     .room-body { padding: 1.5rem; }
     .room-name {
       font-family: var(--ff-head); font-size: 1.3rem;
       margin-bottom: .4rem;
     }
-    .room-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .room-desc { font-size: .92rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
     .room-rates {
       display: flex; gap: 1.2rem; flex-wrap: wrap;
       padding-top: 1rem; margin-bottom: 1rem;
@@ -385,11 +385,11 @@
       font-family: var(--ff-head); font-size: 1.25rem;
       color: var(--gold); font-weight: 600;
     }
-    .room-rate small { font-size: .7rem; color: var(--muted); }
+    .room-rate small { font-size: .78rem; color: var(--muted); }
     .room-meta {
       display: flex; justify-content: space-between; align-items: center;
     }
-    .room-guests { font-size: .75rem; color: var(--muted); }
+    .room-guests { font-size: .85rem; color: var(--muted); }
     .room-guests i { margin-right: .3rem; }
     .room-guests .dot-sep {
       display: inline-block; margin: 0 .7rem;
@@ -398,7 +398,7 @@
     }
     .rates-note {
       max-width: 1200px; margin: 2rem auto 0; padding: 1.5rem;
-      text-align: center; font-size: .8rem; color: var(--muted);
+      text-align: center; font-size: .88rem; color: var(--muted);
       border-top: 1px solid var(--border); line-height: 1.7;
     }
     .rates-note a {
@@ -410,7 +410,7 @@
       display: block; text-align: center;
       padding: .8rem; margin: 0 1.5rem 1.5rem;
       border: 1px solid var(--border); color: var(--text);
-      font-size: .7rem; letter-spacing: 2px; text-transform: uppercase;
+      font-size: .78rem; letter-spacing: 1px; text-transform: uppercase;
       text-decoration: none; transition: all .3s;
     }
     .room-link:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
@@ -443,7 +443,7 @@
     .amenity-card-tip {
       display: inline-flex; align-items: center; gap: .35rem;
       margin-top: 1rem; padding: .35rem .9rem;
-      font-size: .7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      font-size: .78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
       color: var(--gold); border: 1px solid var(--gold);
       border-radius: 999px; position: relative; z-index: 1;
       transition: all .3s;
@@ -467,7 +467,7 @@
       margin-bottom: .5rem; position: relative; z-index: 1;
     }
     .amenity-desc {
-      font-size: .78rem; color: var(--muted); line-height: 1.7;
+      font-size: .86rem; color: var(--muted); line-height: 1.7;
       position: relative; z-index: 1;
     }
 
@@ -495,7 +495,7 @@
       line-height: 1.6; position: relative; z-index: 1;
     }
     .quote-author {
-      font-size: .7rem; letter-spacing: 4px; text-transform: uppercase;
+      font-size: .78rem; letter-spacing: 2px; text-transform: uppercase;
       color: var(--gold);
     }
 
@@ -550,7 +550,7 @@
       padding: .7rem 1.2rem; display: flex; align-items: center; gap: .7rem;
     }
     .contact-map-badge i { color: var(--gold); }
-    .contact-map-badge span { font-size: .78rem; color: var(--light); line-height: 1.4; }
+    .contact-map-badge span { font-size: .86rem; color: var(--light); line-height: 1.4; }
     .contact-items {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 0; margin-top: 0; border: 1px solid var(--border); border-top: none;
@@ -563,7 +563,7 @@
     .contact-item:last-child { border-right: none; }
     .contact-item:hover { background: var(--surface); }
     .contact-item i { color: var(--gold); font-size: 1.1rem; margin-top: .1rem; }
-    .contact-item-label { font-size: .65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+    .contact-item-label { font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
     .contact-item-val { font-size: .88rem; margin-top: .2rem; }
     .contact-chat-row {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;
@@ -576,12 +576,12 @@
     .contact-chat-title {
       font-family: var(--ff-head); font-size: 1.3rem; margin-bottom: .5rem;
     }
-    .contact-chat-desc { font-size: .82rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+    .contact-chat-desc { font-size: .92rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
     .chat-btn {
       display: inline-flex; align-items: center; gap: .6rem;
       background: #229ED9; color: white;
       padding: .7rem 1.5rem; text-decoration: none;
-      font-size: .75rem; letter-spacing: 1px;
+      font-size: .85rem; letter-spacing: 1px;
       transition: all .3s;
     }
     .chat-btn:hover { background: #1a7fb5; box-shadow: 0 0 20px rgba(34,158,217,.3); }
@@ -589,7 +589,7 @@
       display: inline-flex; align-items: center; gap: .6rem;
       background: transparent; border: 1px solid var(--gold); color: var(--gold);
       padding: .7rem 1.5rem;
-      font-size: .75rem; letter-spacing: 1px;
+      font-size: .85rem; letter-spacing: 1px;
       transition: all .3s; margin-top: .8rem;
       cursor: none; font-family: var(--ff-body);
       width: 100%;
@@ -609,17 +609,17 @@
     .footer-logo {
       font-family: var(--ff-head); font-size: 1.8rem;
       color: var(--gold-lt); margin-bottom: 1rem;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
-    .footer-desc { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.9; max-width: 300px; }
+    .footer-desc { font-size: .92rem; color: rgba(255,255,255,.6); line-height: 1.9; max-width: 300px; }
     .footer-col-title {
-      font-size: .65rem; letter-spacing: 4px; text-transform: uppercase;
+      font-size: .72rem; letter-spacing: 2px; text-transform: uppercase;
       color: var(--gold-lt); margin-bottom: 1.5rem;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
     .footer-links a {
       color: rgba(255,255,255,.6); text-decoration: none;
-      font-size: .82rem; transition: color .3s;
+      font-size: .92rem; transition: color .3s;
     }
     .footer-links a:hover { color: var(--gold-lt); }
     .footer-bottom {
@@ -627,7 +627,7 @@
       padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1);
       display: flex; justify-content: space-between; align-items: center;
     }
-    .footer-copy { font-size: .75rem; color: rgba(255,255,255,.4); }
+    .footer-copy { font-size: .85rem; color: rgba(255,255,255,.4); }
     .footer-socials { display: flex; gap: 1rem; }
     .footer-socials a {
       width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.2);
@@ -666,11 +666,11 @@
     .mobile-menu a {
       font-family: var(--ff-head); font-size: 1.6rem;
       color: var(--text); text-decoration: none;
-      letter-spacing: 2px; transition: color .3s;
+      letter-spacing: 1px; transition: color .3s;
     }
     .mobile-menu a:hover { color: var(--gold); }
     .mobile-menu .btn-primary {
-      margin-top: 1rem; font-size: .8rem;
+      margin-top: 1rem; font-size: .88rem;
     }
 
     /* ─── HIDE CURSOR ON TOUCH DEVICES ─── */
@@ -705,7 +705,7 @@
       #quote { padding: 4rem 1.5rem; }
       #cta { padding: 5rem 1.5rem; }
       footer { padding: 3rem 1.5rem; }
-      .hero-location-btn { font-size: .6rem; letter-spacing: 1px; padding: .5rem .8rem; }
+      .hero-location-btn { font-size: .68rem; letter-spacing: 1px; padding: .5rem .8rem; }
       .hero-scroll { display: none; }
     }
 

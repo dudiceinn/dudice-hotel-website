@@ -580,22 +580,12 @@
     .contact-chat-desc { font-size: .92rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
     .chat-btn {
       display: inline-flex; align-items: center; gap: .6rem;
-      background: #229ED9; color: white;
+      background: #1877F2; color: white;
       padding: .7rem 1.5rem; text-decoration: none;
       font-size: .85rem; letter-spacing: 1px;
       transition: all .3s;
     }
-    .chat-btn:hover { background: #1a7fb5; box-shadow: 0 0 20px rgba(34,158,217,.3); }
-    .tawkto-btn {
-      display: inline-flex; align-items: center; gap: .6rem;
-      background: transparent; border: 1px solid var(--gold); color: var(--gold);
-      padding: .7rem 1.5rem;
-      font-size: .85rem; letter-spacing: 1px;
-      transition: all .3s; margin-top: .8rem;
-      cursor: none; font-family: var(--ff-body);
-      width: 100%;
-    }
-    .tawkto-btn:hover { background: var(--gold); color: #fff; }
+    .chat-btn:hover { background: #0d65d9; box-shadow: 0 0 20px rgba(24,119,242,.3); }
 
     /* ─── FOOTER ─── */
     footer {
@@ -677,7 +667,7 @@
     /* ─── HIDE CURSOR ON TOUCH DEVICES ─── */
     @media (pointer: coarse) {
       #cursor, #cursor-ring { display: none !important; }
-      body, .room-card, .nav-btn, .tawkto-btn { cursor: auto; }
+      body, .room-card, .nav-btn { cursor: auto; }
     }
 
     /* ─── RESPONSIVE ─── */
@@ -843,13 +833,10 @@
         </div>
       </div>
 
-      <div class="contact-chat-row" data-aos="fade-up" data-aos-delay="200">
-        <a href="https://t.me/DudiceSupportBot" class="chat-btn" target="_blank" style="justify-content:center;">
-          <i class="fab fa-telegram"></i> Message on Telegram
+      <div class="contact-chat-row" data-aos="fade-up" data-aos-delay="200" style="grid-template-columns:1fr;">
+        <a href="https://www.facebook.com/dudiceinn" class="chat-btn" target="_blank" style="justify-content:center;">
+          <i class="fab fa-facebook-messenger"></i> Message Us on Facebook
         </a>
-        <button class="tawkto-btn" onclick="if(typeof Tawk_API!=='undefined' && Tawk_API.toggle) Tawk_API.toggle()">
-          <i class="fas fa-comments"></i> Start Live Chat
-        </button>
       </div>
     </div>
   </section>
@@ -1126,7 +1113,7 @@
 
     </div>
     <p class="rates-note" data-aos="fade-up">
-      Walk-in rates shown. Group, long-stay, or corporate bookings — <a href="https://t.me/DudiceSupportBot" target="_blank">message us on Telegram</a> for tailored rates.
+      Walk-in rates shown. Group, long-stay, or corporate bookings — <a href="https://www.facebook.com/dudiceinn" target="_blank">message us on Facebook</a> for tailored rates.
     </p>
   </section>
 
@@ -1250,7 +1237,7 @@
         <div class="amenity-card" data-aos="fade-up" data-aos-delay="300">
           <div class="amenity-icon"><i class="fas fa-mobile-alt"></i></div>
           <div class="amenity-name">Online Booking</div>
-          <p class="amenity-desc">Easy, secure online reservations with instant Telegram confirmation.</p>
+          <p class="amenity-desc">Easy, secure online reservations with instant confirmation.</p>
         </div>
       </div>
     </div>
@@ -1310,8 +1297,7 @@
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 Dudice Hotel. All rights reserved.</span>
       <div class="footer-socials">
-        <a href="https://www.facebook.com/dudiceinn/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://t.me/DudiceSupportBot" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.facebook.com/dudiceinn" target="_blank"><i class="fab fa-facebook-f"></i></a>
         <a href="https://www.google.com/maps/place/Dudice+Travellers+Inn/@14.4627757,120.5391242,17z/" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
       </div>
     </div>
@@ -1329,19 +1315,6 @@
     }
   </script>
 
-  <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/69a03124aa3f391c3cc24160/1jicrvu7j';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-  </script>
-  <!--End of Tawk.to Script-->
 
   <script>
     // ─── AOS ───

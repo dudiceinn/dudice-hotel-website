@@ -1,12 +1,12 @@
 # Dudice Hotel Website
 
 ## Overview
-Luxury hotel marketing website for Dudice Hotel (Philippines), deployed to GitHub Pages at `dudicehotel.com`. Single-page static site with no backend — reservations are handled by an external Telegram bot hosted on Render (`https://hotel-reservation-bot.onrender.com`).
+Luxury hotel marketing website for Dudice Hotel (Philippines), deployed to GitHub Pages at `dudicehotel.com`. Single-page static site with no backend — all booking CTAs open Facebook Messenger (`https://m.me/dudiceinn`).
 
 ## Tech Stack
 - **HTML/CSS/JS** — all in a single `index.html` file (no framework, no build tools)
 - **External CDNs**: Google Fonts, Font Awesome 6.5.0, AOS (Animate On Scroll), Particles.js
-- **External Services**: Tawk.to (live chat), Telegram bot (reservations)
+- **External Services**: Facebook Messenger (chat + reservations)
 - **Hosting**: GitHub Pages with custom domain via CNAME
 
 ## Project Structure
@@ -18,12 +18,11 @@ CNAME        — GitHub Pages custom domain config (dudicehotel.com)
 ## Key Sections in index.html
 - **CSS** (lines ~1–550): Custom properties, layout, animations, responsive breakpoints at 900px
 - **HTML** (lines ~550–950): Hero, stats, about, rooms, amenities, quote, CTA, contact, footer
-- **JS** (lines ~950–end): AOS init, particles config, custom cursor, counter animations, Tawk.to toggle
+- **JS** (lines ~950–end): AOS init, particles config, custom cursor, counter animations
 
 ## External Integrations
-- **Telegram Bot**: Reservation link points to `https://hotel-reservation-bot.onrender.com/` (separate repo)
-- **Tawk.to**: Live chat widget (ID: `69a03124aa3f391c3cc24160/1jicrvu7j`)
-- **Telegram Contact**: `@DudiceMichael`
+- **Facebook Messenger**: every Book Now / Reserve / Check Reservation link points to `https://m.me/dudiceinn` (page: `https://www.facebook.com/dudiceinn`)
+- **Legacy**: the Render booking form (`https://hotel-reservation-bot.onrender.com`, separate repo) is still online but no longer linked from the site
 
 ## Known Incomplete Items
 - No meta description or Open Graph tags

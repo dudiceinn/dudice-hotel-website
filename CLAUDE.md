@@ -1,38 +1,34 @@
 # Dudice Hotel Website
 
 ## Overview
-Luxury hotel marketing website for Dudice Hotel (Philippines), deployed to GitHub Pages at `dudicehotel.com`. Single-page static site with no backend — all booking CTAs open Facebook Messenger (`https://m.me/dudiceinn`).
 
-## Tech Stack
-- **HTML/CSS/JS** — all in a single `index.html` file (no framework, no build tools)
-- **External CDNs**: Google Fonts, Font Awesome 6.5.0, AOS (Animate On Scroll), Particles.js
-- **External Services**: Facebook Messenger (chat + reservations)
-- **Hosting**: GitHub Pages with custom domain via CNAME
+Static hotel marketing website for Dudice Hotel in Mariveles, Bataan, deployed to GitHub Pages at `dudicehotel.com`. No backend or build system is included in this repository.
 
-## Project Structure
-```
-index.html   — entire website (HTML + embedded CSS + embedded JS, ~1100 lines)
-CNAME        — GitHub Pages custom domain config (dudicehotel.com)
-```
+## Files
 
-## Key Sections in index.html
-- **CSS** (lines ~1–550): Custom properties, layout, animations, responsive breakpoints at 900px
-- **HTML** (lines ~550–950): Hero, stats, about, rooms, amenities, quote, CTA, contact, footer
-- **JS** (lines ~950–end): AOS init, particles config, custom cursor, counter animations
+- `index.html`: homepage, room cards/rates, native dialogs, FAQs, and hotel metadata.
+- `styles.css`: shared responsive styles, including policy pages.
+- `site.js`: mobile navigation, capacity/rate filters, photo galleries, and local room inquiry preparation.
+- `privacy.html`, `terms.html`: policies, with flexible arrival reflected in the terms.
+- `images/`: local hotel photographs and `manifest.json`.
+- `tests/browser-smoke.mjs`: dependency-free Node browser checks using Chrome's debugging endpoint.
+- `README.md`: local preview and testing instructions.
 
-## External Integrations
-- **Facebook Messenger**: every Book Now / Reserve / Check Reservation link points to `https://m.me/dudiceinn` (page: `https://www.facebook.com/dudiceinn`)
-- **Legacy**: the Render booking form (`https://hotel-reservation-bot.onrender.com`, separate repo) is still online but no longer linked from the site
+## Integrations and behavior
 
-## Known Incomplete Items
-- No meta description or Open Graph tags
-- Instagram social link replaced with Google Maps link (no Instagram account found)
-- Room prices may need verification with current rates
-- Images are hotlinked from directhotels.com — consider hosting locally
+- Messenger: `https://m.me/dudiceinn`; Facebook: `https://www.facebook.com/dudiceinn`.
+- Google Fonts, Font Awesome CSS, and Google Maps are optional external resources. Navigation and galleries have no external JavaScript dependencies.
+- Room inquiries open a native dialog and prepare text for manual copying into Messenger or an email link. The website does not send messages, reserve inventory, verify payments, or query booking status.
+- Without JavaScript, navigation remains visible, photo links open the original image, and room inquiry links open Messenger.
+- No analytics service is configured. Do not interpret inquiry clicks as completed bookings.
 
-## Development Notes
-- No build system — edit `index.html` directly and push to deploy
-- No package.json, no dependencies to install
-- CSS uses a teal/light sandy theme via custom properties (e.g., `--gold` is teal #0e8a8a, `--bg` is cream #faf8f4)
-- Responsive breakpoint is 900px
-- Custom cursor is hidden on mobile via CSS
+## Content rules
+
+- Arrival is flexible. A booked 12- or 24-hour stay starts at actual check-in; availability must still be confirmed.
+- Published prices are walk-in rates. Reservation rates, availability, deposits, and extra-guest charge periods are confirmed by the hotel team.
+- Existing deposit/cancellation policy text remains in `terms.html`; do not invent replacement business policies.
+- Use real property photos and factual amenities. Do not invent guest reviews, ratings, or luxury claims.
+
+## Development
+
+No framework is needed. Keep functional links as fallbacks, use semantic HTML and accessible modal focus handling, and respect reduced-motion preferences. The palette is teal, cream, and sand. Preserve the pre-existing local company-profile files.

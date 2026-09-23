@@ -1,1398 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="facebook-domain-verification" content="pynsg7yartmpjqkk48xrw5hetseaoa" />
-  <title>Dudice Hotel — Where Luxury Meets Comfort</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
-
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- GLightbox (room photo galleries) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
-
-  <style>
-    /* ─── RESET & BASE ─── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --gold:     #0e8a8a;
-      --gold-lt:  #5bbec4;
-      --gold-dk:  #065a62;
-      --bg:       #faf8f4;
-      --bg2:      #f0ece4;
-      --bg3:      #e8e3da;
-      --surface:  rgba(14,138,138,0.04);
-      --border:   rgba(14,138,138,0.18);
-      --text:     #2c2a28;
-      --muted:    #4a463f;
-      --ff-head:  'Playfair Display', serif;
-      --ff-body:  'Montserrat', sans-serif;
-      --ff-ital:  'Cormorant Garamond', serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--ff-body);
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* ─── CUSTOM CURSOR ─── */
-    #cursor {
-      position: fixed; width: 10px; height: 10px;
-      background: var(--gold); border-radius: 50%;
-      pointer-events: none; z-index: 99999;
-      transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, background .2s;
-      mix-blend-mode: difference;
-    }
-    #cursor-ring {
-      position: fixed; width: 36px; height: 36px;
-      border: 1px solid var(--gold); border-radius: 50%;
-      pointer-events: none; z-index: 99998;
-      transform: translate(-50%,-50%);
-      transition: all .12s ease;
-      opacity: .6;
-    }
-    body:hover #cursor { width: 12px; height: 12px; }
-
-    /* ─── SCROLL PROGRESS ─── */
-    #progress-bar {
-      position: fixed; top: 0; left: 0; height: 2px;
-      background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-lt));
-      width: 0%; z-index: 9999;
-      transition: width .1s linear;
-      box-shadow: 0 0 8px rgba(14,138,138,.4);
-    }
-
-    /* ─── NAVBAR ─── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      padding: 1.4rem 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: all .4s ease;
-    }
-    nav.scrolled {
-      background: rgba(250,248,244,.95);
-      backdrop-filter: blur(20px);
-      padding: 1rem 4rem;
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 20px rgba(0,0,0,.06);
-    }
-    .nav-logo {
-      font-family: var(--ff-head);
-      font-size: 1.6rem; font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 1px;
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--text); font-weight: 400; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--text); text-decoration: none;
-      font-size: .86rem; letter-spacing: 1px; text-transform: uppercase;
-      font-weight: 500;
-      position: relative; padding-bottom: 4px;
-      transition: color .3s;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 1px; background: var(--gold);
-      transition: width .3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-btn {
-      background: transparent; border: 1px solid var(--gold);
-      color: var(--gold); padding: .6rem 1.6rem;
-      font-family: var(--ff-body); font-size: .85rem;
-      letter-spacing: 1px; text-transform: uppercase;
-      cursor: none; transition: all .3s;
-      text-decoration: none;
-    }
-    .nav-btn:hover { background: var(--gold); color: #fff; }
-
-    /* ─── HERO ─── */
-    #hero {
-      position: relative; height: 100vh; width: 100%;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    #particles-js {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse at 60% 40%, #e0f0f0 0%, #faf8f4 70%);
-    }
-    .hero-lines {
-      position: absolute; inset: 0; z-index: 1;
-      background-image:
-        linear-gradient(rgba(14,138,138,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(14,138,138,.06) 1px, transparent 1px);
-      background-size: 80px 80px;
-      animation: gridMove 20s linear infinite;
-    }
-    @keyframes gridMove {
-      0%   { transform: translateY(0); }
-      100% { transform: translateY(80px); }
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      text-align: center; max-width: 860px; padding: 2rem;
-    }
-    .hero-tag {
-      display: inline-block;
-      font-size: .78rem; letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: .4rem 1.6rem;
-      animation: fadeDown .8s ease forwards;
-    }
-    .hero-title {
-      font-family: var(--ff-head);
-      font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 700; line-height: 1.1;
-      margin-bottom: 1rem;
-      animation: fadeUp 1s .2s ease both;
-    }
-    .hero-title em {
-      font-style: italic; color: var(--gold);
-      display: block;
-    }
-    .hero-sub {
-      font-family: var(--ff-ital);
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      color: var(--muted); margin-bottom: 2.5rem;
-      font-weight: 300; font-style: italic;
-      animation: fadeUp 1s .4s ease both;
-    }
-    .hero-btns {
-      display: flex; gap: 1.2rem; justify-content: center;
-      animation: fadeUp 1s .6s ease both;
-    }
-    .btn-primary {
-      background: var(--gold); color: #fff;
-      padding: .9rem 2.4rem; text-decoration: none;
-      font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase;
-      font-weight: 600; transition: all .3s;
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: white; transform: translateX(-100%);
-      transition: transform .3s; opacity: .15;
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary:hover { box-shadow: 0 0 30px rgba(14,138,138,.3); }
-    .btn-outline {
-      border: 1px solid var(--border); color: var(--text);
-      padding: .9rem 2.4rem; text-decoration: none;
-      font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase;
-      font-weight: 500; transition: all .3s;
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-    .hero-location-btn {
-      display: inline-flex; align-items: center; gap: .6rem;
-      margin-top: 1.8rem; padding: .55rem 1.2rem;
-      border: 1px solid rgba(14,138,138,.3); color: var(--muted);
-      font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase;
-      text-decoration: none; transition: all .3s;
-      animation: fadeUp 1s .9s ease both;
-    }
-    .hero-location-btn i { color: var(--gold); }
-    .hero-location-btn span { color: var(--gold); text-decoration: underline; }
-    .hero-location-btn:hover { border-color: var(--gold); color: var(--light); }
-    .hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%;
-      transform: translateX(-50%); z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      animation: fadeUp 1s 1s ease both;
-    }
-    .hero-scroll span {
-      font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .scroll-line {
-      width: 1px; height: 50px;
-      background: linear-gradient(var(--gold), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%,100% { opacity: .3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── SECTION BASE ─── */
-    section { padding: 7rem 4rem; }
-    .section-tag {
-      font-size: .72rem; letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem; display: block;
-    }
-    .section-title {
-      font-family: var(--ff-head);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 600; line-height: 1.2;
-      margin-bottom: 1.2rem;
-    }
-    .section-title em { font-style: italic; color: var(--gold); }
-    .section-line {
-      width: 60px; height: 1px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin-bottom: 1.5rem;
-    }
-    .section-sub {
-      color: var(--muted); font-size: 1rem; line-height: 1.75;
-      font-weight: 500;
-      max-width: 520px;
-    }
-
-
-    /* ─── ABOUT ─── */
-    #about {
-      background: var(--bg);
-      max-width: 1200px; margin: 0 auto;
-    }
-    #about > div:first-child {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
-      align-items: center;
-    }
-    .about-img-wrap {
-      position: relative;
-    }
-    .about-img-frame {
-      width: 100%; aspect-ratio: 3/4;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .about-img-frame::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(14,138,138,.08), transparent);
-    }
-    .about-img-frame img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
-    .about-accent {
-      position: absolute; bottom: -1.5rem; right: -1.5rem;
-      width: 60%; aspect-ratio: 1;
-      border: 1px solid var(--border);
-      z-index: -1;
-    }
-    .about-badge {
-      position: absolute; top: 2rem; left: -2rem;
-      background: var(--gold); color: #fff;
-      padding: 1.2rem;
-      font-family: var(--ff-head);
-      text-align: center;
-    }
-    .about-badge .num { font-size: 2rem; font-weight: 700; display: block; }
-    .about-badge .txt { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; }
-    .about-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
-    .about-feat {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 1.4rem;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      transition: border-color .3s, background .3s;
-    }
-    .about-feat:hover { border-color: var(--gold); background: rgba(14,138,138,.05); }
-    .about-feat i { color: var(--gold); font-size: 1.1rem; width: 20px; }
-    .about-feat span { font-size: .92rem; letter-spacing: 1px; }
-
-    /* ─── ROOMS ─── */
-    #rooms {
-      background: var(--bg2);
-      max-width: 100%;
-    }
-    .rooms-header {
-      max-width: 1200px; margin: 0 auto 4rem;
-      display: flex; justify-content: space-between; align-items: flex-end;
-    }
-    .rooms-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
-    }
-    .room-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      overflow: hidden; position: relative;
-      transition: transform .4s, box-shadow .4s;
-      cursor: none;
-    }
-    .room-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.1), 0 0 0 1px var(--gold);
-    }
-    .room-img {
-      height: 220px; background: var(--bg2);
-      position: relative; overflow: hidden;
-    }
-    .room-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
-    .room-img a.room-img-link { display: block; width: 100%; height: 100%; }
-    .room-card:hover .room-img img { transform: scale(1.04); }
-    .room-img-overlay {
-      position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to top, var(--bg3) 0%, transparent 40%);
-    }
-    .room-type-tag {
-      position: absolute; top: 1rem; left: 1rem;
-      background: var(--gold); color: #fff;
-      font-size: .68rem; letter-spacing: 1px; text-transform: uppercase;
-      padding: .3rem .8rem; font-weight: 600;
-      pointer-events: none;
-    }
-    .gallery-badge {
-      position: absolute; bottom: 1rem; right: 1rem;
-      background: rgba(0,0,0,.6); color: #fff;
-      font-size: .78rem; padding: .35rem .7rem;
-      border-radius: 999px; display: inline-flex; align-items: center; gap: .4rem;
-      pointer-events: none; backdrop-filter: blur(4px);
-    }
-    .gallery-badge i { font-size: .85rem; }
-    .room-body { padding: 1.5rem; }
-    .room-name {
-      font-family: var(--ff-head); font-size: 1.3rem;
-      margin-bottom: .4rem;
-    }
-    .room-desc { font-size: .92rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
-    .room-rates {
-      display: flex; gap: 1.2rem; flex-wrap: wrap;
-      padding-top: 1rem; margin-bottom: 1rem;
-      border-top: 1px solid var(--border);
-    }
-    .room-rate { display: flex; align-items: baseline; gap: .3rem; }
-    .room-rate strong {
-      font-family: var(--ff-head); font-size: 1.25rem;
-      color: var(--gold); font-weight: 600;
-    }
-    .room-rate small { font-size: .78rem; color: var(--muted); }
-    .room-meta {
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .room-guests { font-size: .85rem; color: var(--muted); }
-    .room-guests i { margin-right: .3rem; }
-    .room-guests .dot-sep {
-      display: inline-block; margin: 0 .7rem;
-      color: var(--gold); font-weight: 700; font-size: 1rem;
-      vertical-align: -.05em;
-    }
-    .rates-note {
-      max-width: 1200px; margin: 2rem auto 0; padding: 1.5rem;
-      text-align: center; font-size: .88rem; color: var(--muted);
-      border-top: 1px solid var(--border); line-height: 1.7;
-    }
-    .rates-note a {
-      color: var(--gold); text-decoration: none; font-weight: 600;
-      border-bottom: 1px solid var(--gold); padding-bottom: 1px;
-    }
-    .rates-note a:hover { color: var(--gold-dk); border-color: var(--gold-dk); }
-    .room-link {
-      display: block; text-align: center;
-      padding: .8rem; margin: 0 1.5rem 1.5rem;
-      border: 1px solid var(--border); color: var(--text);
-      font-size: .78rem; letter-spacing: 1px; text-transform: uppercase;
-      text-decoration: none; transition: all .3s;
-    }
-    .room-link:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
-
-    /* ─── AMENITIES ─── */
-    #amenities {
-      background: var(--bg);
-      max-width: 1200px; margin: 0 auto;
-    }
-    .amenities-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
-      margin-top: 4rem;
-    }
-    .amenity-card {
-      padding: 2.5rem 1.5rem; text-align: center;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      position: relative; overflow: hidden;
-      transition: all .4s;
-    }
-    .amenity-card::before {
-      content: ''; position: absolute;
-      bottom: 0; left: 0; right: 0; height: 0;
-      background: rgba(14,138,138,.06);
-      transition: height .4s;
-    }
-    .amenity-card:hover::before { height: 100%; }
-    .amenity-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-    a.amenity-card { text-decoration: none; color: inherit; display: block; cursor: pointer; }
-    .amenity-card-tip {
-      display: inline-flex; align-items: center; gap: .35rem;
-      margin-top: 1rem; padding: .35rem .9rem;
-      font-size: .78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      color: var(--gold); border: 1px solid var(--gold);
-      border-radius: 999px; position: relative; z-index: 1;
-      transition: all .3s;
-    }
-    a.amenity-card:hover .amenity-card-tip { background: var(--gold); color: #fff; }
-    .amenity-icon {
-      width: 60px; height: 60px; margin: 0 auto 1.5rem;
-      border: 1px solid var(--border); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; color: var(--gold);
-      position: relative; z-index: 1;
-      transition: all .4s;
-    }
-    .amenity-card:hover .amenity-icon {
-      background: var(--gold); color: #fff;
-      border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(14,138,138,.3);
-    }
-    .amenity-name {
-      font-family: var(--ff-head); font-size: 1rem;
-      margin-bottom: .5rem; position: relative; z-index: 1;
-    }
-    .amenity-desc {
-      font-size: .86rem; color: var(--muted); line-height: 1.7;
-      position: relative; z-index: 1;
-    }
-
-    /* ─── QUOTE / PARALLAX ─── */
-    #quote {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center; padding: 6rem 4rem;
-      position: relative; overflow: hidden;
-    }
-    #quote::before {
-      content: '"';
-      font-family: var(--ff-head); font-size: 20rem;
-      color: rgba(14,138,138,.06);
-      position: absolute; top: -5rem; left: 50%;
-      transform: translateX(-50%);
-      line-height: 1; pointer-events: none;
-    }
-    .quote-text {
-      font-family: var(--ff-ital);
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      font-style: italic; font-weight: 300;
-      max-width: 760px; margin: 0 auto 1.5rem;
-      line-height: 1.6; position: relative; z-index: 1;
-    }
-    .quote-author {
-      font-size: .78rem; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* ─── CTA ─── */
-    #cta {
-      text-align: center; padding: 8rem 4rem;
-      background: var(--bg);
-      position: relative; overflow: hidden;
-    }
-    .cta-glow {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(14,138,138,.06) 0%, transparent 70%);
-      pointer-events: none;
-      animation: glowPulse 4s ease-in-out infinite;
-    }
-    @keyframes glowPulse {
-      0%,100% { opacity: .5; transform: translate(-50%,-50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%,-50%) scale(1.1); }
-    }
-    .cta-title {
-      font-family: var(--ff-head);
-      font-size: clamp(2rem, 5vw, 4rem);
-      margin-bottom: 1rem; position: relative; z-index: 1;
-    }
-    .cta-title em { font-style: italic; color: var(--gold); }
-    .cta-sub {
-      color: var(--muted); margin-bottom: 3rem;
-      font-size: .9rem; line-height: 1.9;
-      position: relative; z-index: 1;
-    }
-    .cta-btns { position: relative; z-index: 1; display: flex; gap: 1rem; justify-content: center; }
-
-    /* ─── CONTACT ─── */
-    #contact {
-      background: var(--bg2);
-      max-width: 100%;
-      padding: 7rem 4rem;
-    }
-    .contact-inner {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .contact-map-wrap {
-      position: relative; width: 100%; height: 460px;
-      border: 1px solid var(--border); overflow: hidden; margin-top: 2.5rem;
-    }
-    .contact-map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
-    .contact-map-badge {
-      position: absolute; bottom: 1.2rem; left: 1.2rem;
-      background: var(--bg); border: 1px solid var(--gold);
-      padding: .7rem 1.2rem; display: flex; align-items: center; gap: .7rem;
-    }
-    .contact-map-badge i { color: var(--gold); }
-    .contact-map-badge span { font-size: .86rem; color: var(--light); line-height: 1.4; }
-    .contact-items {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; margin-top: 0; border: 1px solid var(--border); border-top: none;
-    }
-    .contact-item {
-      display: flex; gap: 1rem; align-items: flex-start;
-      padding: 1.4rem 1.2rem; border-right: 1px solid var(--border);
-      transition: border-color .3s; border-bottom: none;
-    }
-    .contact-item:last-child { border-right: none; }
-    .contact-item:hover { background: var(--surface); }
-    .contact-item i { color: var(--gold); font-size: 1.1rem; margin-top: .1rem; }
-    .contact-item-label { font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
-    .contact-item-val { font-size: .88rem; margin-top: .2rem; }
-    .contact-chat-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;
-    }
-    .contact-chat {
-      margin-top: 2.5rem; padding: 2rem;
-      border: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .contact-chat-title {
-      font-family: var(--ff-head); font-size: 1.3rem; margin-bottom: .5rem;
-    }
-    .contact-chat-desc { font-size: .92rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
-    .chat-btn {
-      display: inline-flex; align-items: center; gap: .6rem;
-      background: #1877F2; color: white;
-      padding: .7rem 1.5rem; text-decoration: none;
-      font-size: .85rem; letter-spacing: 1px;
-      transition: all .3s;
-    }
-    .chat-btn:hover { background: #0d65d9; box-shadow: 0 0 20px rgba(24,119,242,.3); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: #1a3a3a;
-      border-top: none;
-      padding: 4rem;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
-    }
-    .footer-logo {
-      font-family: var(--ff-head); font-size: 1.8rem;
-      color: var(--gold-lt); margin-bottom: 1rem;
-      letter-spacing: 1px;
-    }
-    .footer-desc { font-size: .92rem; color: rgba(255,255,255,.6); line-height: 1.9; max-width: 300px; }
-    .footer-col-title {
-      font-size: .72rem; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold-lt); margin-bottom: 1.5rem;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
-    .footer-links a {
-      color: rgba(255,255,255,.6); text-decoration: none;
-      font-size: .92rem; transition: color .3s;
-    }
-    .footer-links a:hover { color: var(--gold-lt); }
-    .footer-bottom {
-      max-width: 1200px; margin: 3rem auto 0;
-      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-copy { font-size: .85rem; color: rgba(255,255,255,.4); }
-    .footer-socials { display: flex; gap: 1rem; }
-    .footer-socials a {
-      width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.2);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.5); text-decoration: none; transition: all .3s;
-      font-size: .85rem;
-    }
-    .footer-socials a:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
-
-
-    /* ─── HAMBURGER MENU ─── */
-    .nav-hamburger {
-      display: none; background: none; border: none;
-      flex-direction: column; gap: 5px; padding: .5rem;
-      cursor: pointer; z-index: 1002;
-    }
-    .nav-hamburger span {
-      display: block; width: 24px; height: 2px;
-      background: var(--text); transition: all .3s ease;
-    }
-    .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    /* ─── MOBILE OVERLAY MENU ─── */
-    .mobile-menu {
-      display: none; position: fixed; inset: 0;
-      background: rgba(250,248,244,.98);
-      backdrop-filter: blur(20px);
-      z-index: 1001;
-      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-      opacity: 0; transition: opacity .3s ease;
-      pointer-events: none;
-    }
-    .mobile-menu.open { opacity: 1; pointer-events: auto; }
-    .mobile-menu a {
-      font-family: var(--ff-head); font-size: 1.6rem;
-      color: var(--text); text-decoration: none;
-      letter-spacing: 1px; transition: color .3s;
-    }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-menu .btn-primary {
-      margin-top: 1rem; font-size: .88rem;
-    }
-
-    /* ─── HIDE CURSOR ON TOUCH DEVICES ─── */
-    @media (pointer: coarse) {
-      #cursor, #cursor-ring { display: none !important; }
-      body, .room-card, .nav-btn { cursor: auto; }
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
-      nav.scrolled { padding: .8rem 1.5rem; }
-      .nav-links { display: none; }
-      .nav-btn { display: none; }
-      .nav-hamburger { display: flex; }
-      .mobile-menu { display: flex; }
-      section { padding: 5rem 1.5rem; }
-      #about > div:first-child { grid-template-columns: 1fr; gap: 3rem; }
-      #about { padding: 5rem 1.5rem; }
-      .about-badge { left: 0; }
-      .rooms-grid { grid-template-columns: 1fr; }
-      .rooms-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
-      .amenities-grid { grid-template-columns: repeat(2,1fr); }
-      .contact-items { grid-template-columns: repeat(2, 1fr); }
-      .contact-item:nth-child(2) { border-right: none; }
-      .contact-item { border-bottom: 1px solid var(--border); }
-      .contact-chat-row { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-      #contact { padding: 5rem 1.5rem; }
-      .contact-map-wrap { height: 300px; }
-      #quote { padding: 4rem 1.5rem; }
-      #cta { padding: 5rem 1.5rem; }
-      footer { padding: 3rem 1.5rem; }
-      .hero-location-btn { font-size: .68rem; letter-spacing: 1px; padding: .5rem .8rem; }
-      .hero-scroll { display: none; }
-    }
-
-    /* ─── SMALL PHONES ─── */
-    @media (max-width: 480px) {
-      .hero-btns { flex-direction: column; align-items: center; gap: .8rem; }
-      .hero-btns a { width: 100%; text-align: center; }
-      .hero-location-btn { flex-wrap: wrap; justify-content: center; text-align: center; }
-      .rooms-grid { gap: 1rem; }
-      .amenities-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .contact-items { grid-template-columns: 1fr; }
-      .contact-item { border-right: none; }
-      .contact-item:last-child { border-bottom: none; }
-      .cta-btns { flex-direction: column; align-items: center; gap: .8rem; }
-      .cta-btns a { width: 100%; text-align: center; }
-      .section-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
-      .room-body { padding: 1.2rem; }
-      .room-link { margin: 0 1.2rem 1.2rem; }
-      .chat-btn { width: 100%; justify-content: center; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="facebook-domain-verification" content="pynsg7yartmpjqkk48xrw5hetseaoa">
+  <title>Dudice Hotel | Rooms &amp; Rates in Mariveles, Bataan</title>
+  <meta name="description" content="Find your room at Dudice Hotel in Alas-Asin, Mariveles, Bataan. Compare 12- and 24-hour walk-in rates, browse real photos, and inquire on Messenger.">
+  <meta name="theme-color" content="#174445">
+  <link rel="canonical" href="https://dudicehotel.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dudice Hotel">
+  <meta property="og:title" content="Dudice Hotel &mdash; Your stay in Mariveles, Bataan">
+  <meta property="og:description" content="Comfortable rooms, flexible arrival, and a warm welcome. Explore photos and 12- or 24-hour walk-in rates.">
+  <meta property="og:url" content="https://dudicehotel.com/">
+  <meta property="og:image" content="https://dudicehotel.com/images/building-01.jpg">
+  <meta property="og:image:alt" content="Balcony walkway at Dudice Hotel in Mariveles">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dudice Hotel | Mariveles, Bataan">
+  <meta name="twitter:description" content="Explore rooms, photos, and 12- or 24-hour walk-in rates. Inquire directly with our team.">
+  <meta name="twitter:image" content="https://dudicehotel.com/images/building-01.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Hotel","name":"Dudice Hotel","alternateName":"Dudice Travellers Inn","url":"https://dudicehotel.com/","image":"https://dudicehotel.com/images/building-01.jpg","telephone":"+639951302152","email":"dudiceinn@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Roman Highway, Alas-Asin","addressLocality":"Mariveles","addressRegion":"Bataan","addressCountry":"PH"},"sameAs":["https://www.facebook.com/dudiceinn"]}</script>
 </head>
 <body>
-
-  <!-- CURSOR -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- PROGRESS BAR -->
-  <div id="progress-bar"></div>
-
-  <!-- NAVBAR -->
-  <nav id="navbar">
-    <a href="#" class="nav-logo">DUDICE <span>HOTEL</span></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#rooms">Rooms</a></li>
-      <li><a href="#explore">Explore</a></li>
-      <li><a href="#amenities">Amenities</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="nav-btn">Book Now</a>
-    <button class="nav-hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#about" class="mobile-menu-link">About</a>
-    <a href="#rooms" class="mobile-menu-link">Rooms</a>
-    <a href="#explore" class="mobile-menu-link">Explore</a>
-    <a href="#amenities" class="mobile-menu-link">Amenities</a>
-    <a href="#contact" class="mobile-menu-link">Contact</a>
-    <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="btn-primary">Book Now</a>
-  </div>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-lines"></div>
-    <div id="particles-js"></div>
-    <div class="hero-content">
-      <div class="hero-tag">Est. Dudice Inn &amp; Hotel</div>
-      <h1 class="hero-title">
-        Experience the Art of<br>
-        <em>Refined Living</em>
-      </h1>
-      <p class="hero-sub">Where every stay becomes an unforgettable story</p>
-      <div class="hero-btns">
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="btn-primary">Reserve Your Stay</a>
-        <a href="#rooms" class="btn-outline">Explore Rooms</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="navbar wrap" aria-label="Main navigation">
+    <a class="brand" href="#" aria-label="Dudice Hotel home"><strong>DUDICE</strong><span>HOTEL &middot; MARIVELES</span></a>
+    <div class="nav-links"><a href="#rooms">Rooms &amp; rates</a><a href="#amenities">Amenities</a><a href="#explore">Gallery</a><a href="#contact">Find us</a><a href="#faq">FAQs</a></div>
+    <a class="btn" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message to book</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-haspopup="dialog">Menu</button>
+  </nav></header>
+  <dialog id="mobile-menu" class="menu-panel" aria-labelledby="menu-title">
+    <div class="dialog-heading"><h2 id="menu-title">Explore Dudice</h2><button class="close-button" type="button" data-close>Close</button></div>
+    <nav aria-label="Mobile navigation"><a href="#rooms">Rooms &amp; rates</a><a href="#amenities">Amenities</a><a href="#explore">Gallery</a><a href="#contact">Find us</a><a href="#faq">FAQs</a></nav>
+    <a class="btn" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message to book</a>
+  </dialog>
+  <main id="main" tabindex="-1">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy"><span class="eyebrow">Alas-Asin &middot; Mariveles &middot; Bataan</span><h1 id="hero-title">A comfortable stay.<em>A warm welcome.</em></h1>
+        <p>Make yourself at home in Mariveles. Rooms for solo trips, time together, and the whole family &mdash; with flexible arrival and friendly service.</p>
+        <div class="hero-actions"><a class="btn" href="#rooms">Explore rooms &amp; rates</a><a class="btn btn-outline" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message to book</a></div>
+        <div class="hero-rate">Walk-in stays from <strong>&#8369;1,000 / 12 hours</strong><br>Room availability and reservation rates confirmed by our team.</div>
       </div>
-      <a href="https://www.google.com/maps/place/Dudice+Travellers+Inn/@14.4627757,120.5391242,17z/" target="_blank" class="hero-location-btn">
-        <i class="fas fa-map-marker-alt"></i>
-        Roman Highway, Alas-Asin, Mariveles, Bataan — <span>View on Map</span>
-      </a>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-inner">
-      <div data-aos="fade-up">
-        <span class="section-tag">Find Us</span>
-        <h2 class="section-title">Where to <em>Find</em> Us</h2>
-        <div class="section-line"></div>
-        <p class="section-sub">Located along Roman Highway in Mariveles, Bataan — easily accessible from Manila via SCTEX or the Bataan Peninsula.</p>
+      <figure class="hero-media"><img src="images/building-01.jpg" alt="Sunlit balcony walkway outside the rooms at Dudice Hotel" width="1600" height="1066" fetchpriority="high"><figcaption><strong>Your base in Bataan</strong>Roman Highway, Alas-Asin, Mariveles</figcaption></figure>
+    </section>
+    <div class="comfort-strip"><div class="wrap"><span><i class="fas fa-clock" aria-hidden="true"></i>Flexible check-in</span><span><i class="fas fa-wifi" aria-hidden="true"></i>Free WiFi</span><span><i class="fas fa-snowflake" aria-hidden="true"></i>Air-conditioned rooms</span><span><i class="fas fa-parking" aria-hidden="true"></i>Free parking</span></div></div>
+    <section class="section" id="rooms" aria-labelledby="rooms-title"><div class="wrap">
+      <div class="section-heading"><div><span class="eyebrow">Find your room</span><h2 id="rooms-title">Room for <em>your kind of stay.</em></h2><p class="section-intro">Compare our rooms and walk-in rates. Your 12- or 24-hour stay starts when you check in.</p></div><a class="text-link" href="#how-to-book">How reservations work</a></div>
+      <div class="room-controls" hidden><label for="stay-filter">Show rates for<select id="stay-filter"><option value="all">Both stay lengths</option><option value="12">12-hour stay</option><option value="24">24-hour stay</option></select></label><label for="guest-filter">Number of guests<select id="guest-filter"><option value="all">All rooms</option><option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7">7 guests</option><option value="8">8 guests</option><option value="9">9+ guests</option></select></label></div>
+      <p class="filter-status" id="filter-status" role="status" hidden></p>
+      <div class="rooms-grid"><article class="room-card" data-room="Regular Room" data-capacity="3" data-included="2">
+      <div class="room-img"><a href="images/regular-room-01.jpg" class="room-img-link gallery-link" data-gallery="regular-room" data-title="Regular Room" aria-label="View Regular Room photos"><img src="images/regular-room-01.jpg" alt="Regular Room at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">2 photos</span></div><a href="images/regular-room-02.jpg" class="gallery-link" data-gallery="regular-room" data-title="Regular Room" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Regular Room</h3><p class="room-desc">A double bed and the essentials for a comfortable stay. A simple choice for solo travelers and couples.</p>
+        <p class="room-guests">2 guests included &middot; 3 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;1,000</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;1,800</strong><small>24-hour stay</small></div></div>
       </div>
-
-      <div class="contact-map-wrap" data-aos="fade-up" data-aos-delay="100">
-        <iframe
-          src="https://www.google.com/maps?q=Dudice+Travellers+Inn,+Mariveles,+Bataan&z=17&output=embed"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        <div class="contact-map-badge">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Roman Highway, Alas-Asin<br>Mariveles, Bataan</span>
-        </div>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Regular Room">Ask about this room</a>
+    </article>
+<article class="room-card" data-room="Standard Balcony" data-capacity="3" data-included="2">
+      <div class="room-img"><a href="images/veranda-room-01.jpg" class="room-img-link gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" aria-label="View Standard Balcony photos"><img src="images/veranda-room-01.jpg" alt="Standard Balcony at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">12 photos</span></div><a href="images/veranda-room-02.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-03.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-04.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-05.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-06.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-07.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-08.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-09.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-10.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-11.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-room-12.jpg" class="gallery-link" data-gallery="veranda-room" data-title="Standard Balcony" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Standard Balcony</h3><p class="room-desc">An air-conditioned room with a balcony, for a little outdoor space during your stay.</p>
+        <p class="room-guests">2 guests included &middot; 3 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;1,300</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;2,100</strong><small>24-hour stay</small></div></div>
       </div>
-
-      <div class="contact-items" data-aos="fade-up" data-aos-delay="150">
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <div>
-            <div class="contact-item-label">Address</div>
-            <div class="contact-item-val">Roman Highway, Alas-Asin, Mariveles, Bataan</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <div>
-            <div class="contact-item-label">Phone</div>
-            <div class="contact-item-val">+63 995 130 2152</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-val">dudiceinn@gmail.com</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-clock"></i>
-          <div>
-            <div class="contact-item-label">Check-in / Check-out</div>
-            <div class="contact-item-val">Anytime</div>
-          </div>
-        </div>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Standard Balcony">Ask about this room</a>
+    </article>
+<article class="room-card" data-room="Suite Room" data-capacity="3" data-included="2">
+      <div class="room-img"><a href="images/suite-room-01.jpg" class="room-img-link gallery-link" data-gallery="suite-room" data-title="Suite Room" aria-label="View Suite Room photos"><img src="images/suite-room-01.jpg" alt="Suite Room at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">9 photos</span></div><a href="images/suite-room-02.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-03.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-04.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-05.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-06.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-07.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-08.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/suite-room-09.jpg" class="gallery-link" data-gallery="suite-room" data-title="Suite Room" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Suite Room</h3><p class="room-desc">A comfortable double-bed room with an in-room screen for winding down after your day.</p>
+        <p class="room-guests">2 guests included &middot; 3 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;1,200</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;2,000</strong><small>24-hour stay</small></div></div>
       </div>
-
-      <div class="contact-chat-row" data-aos="fade-up" data-aos-delay="200" style="grid-template-columns:1fr;">
-        <a href="https://m.me/dudiceinn" class="chat-btn" target="_blank" style="justify-content:center;">
-          <i class="fab fa-facebook-messenger"></i> Message Us on Facebook
-        </a>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Suite Room">Ask about this room</a>
+    </article>
+<article class="room-card" data-room="Twin Room" data-capacity="3" data-included="2">
+      <div class="room-img"><a href="images/twin-room-01.jpg" class="room-img-link gallery-link" data-gallery="twin-room" data-title="Twin Room" aria-label="View Twin Room photos"><img src="images/twin-room-01.jpg" alt="Twin Room at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">11 photos</span></div><a href="images/twin-room-02.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-03.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-04.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-05.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-06.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-07.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-08.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-09.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-10.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/twin-room-11.jpg" class="gallery-link" data-gallery="twin-room" data-title="Twin Room" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Twin Room</h3><p class="room-desc">Two single beds, ideal for friends or colleagues traveling together.</p>
+        <p class="room-guests">2 guests included &middot; 3 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;1,200</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;2,000</strong><small>24-hour stay</small></div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div class="about-img-wrap" data-aos="fade-right">
-        <div class="about-img-frame">
-          <img src="https://img.directhotels.com/ph/mariveles/dudice-travellers-inn/1.jpg" alt="Dudice Travellers Inn exterior" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-        <div class="about-accent"></div>
-        <div class="about-badge">
-          <span class="num">★</span>
-          <span class="txt">Premium</span>
-        </div>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Twin Room">Ask about this room</a>
+    </article>
+<article class="room-card" data-room="Deluxe Balcony" data-capacity="3" data-included="2">
+      <div class="room-img"><a href="images/veranda-deluxe-01.jpg" class="room-img-link gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" aria-label="View Deluxe Balcony photos"><img src="images/veranda-deluxe-01.jpg" alt="Deluxe Balcony at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">10 photos</span></div><a href="images/veranda-deluxe-02.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-03.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-04.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-05.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-06.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-07.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-08.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-09.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a><a href="images/veranda-deluxe-10.jpg" class="gallery-link" data-gallery="veranda-deluxe" data-title="Deluxe Balcony" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Deluxe Balcony</h3><p class="room-desc">A balcony room with space to settle in and enjoy a relaxed stay.</p>
+        <p class="room-guests">2 guests included &middot; 3 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;1,500</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;2,200</strong><small>24-hour stay</small></div></div>
       </div>
-      <div data-aos="fade-left">
-        <span class="section-tag">Our Story</span>
-        <h2 class="section-title">A Sanctuary of <em>Elegance</em></h2>
-        <div class="section-line"></div>
-        <p class="section-sub" style="margin-bottom:1.5rem;">
-          Located along Roman Highway in Alas-Asin, Mariveles, Bataan, Dudice Traveller's Inn
-          is your home away from home — offering clean, comfortable, and affordable accommodations
-          with 24-hour service and a warm Filipino hospitality.
-        </p>
-        <p class="section-sub" style="margin-bottom:2rem;">
-          With air-conditioned rooms, free WiFi, private parking, and friendly staff,
-          we make sure every guest enjoys a relaxing and hassle-free stay.
-        </p>
-        <div class="about-features">
-          <div class="about-feat" data-aos="fade-left" data-aos-delay="100">
-            <i class="fas fa-concierge-bell"></i>
-            <span>24/7 Personalized Concierge Service</span>
-          </div>
-          <div class="about-feat" data-aos="fade-left" data-aos-delay="200">
-            <i class="fas fa-shield-alt"></i>
-            <span>Safe, Secure &amp; Comfortable Environment</span>
-          </div>
-          <div class="about-feat" data-aos="fade-left" data-aos-delay="300">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Prime Location, Easy Access</span>
-          </div>
-        </div>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Deluxe Balcony">Ask about this room</a>
+    </article>
+<article class="room-card" data-room="Double Deck" data-capacity="5" data-included="4">
+      <div class="room-img"><a href="images/double-deck-01.jpg" class="room-img-link gallery-link" data-gallery="double-deck" data-title="Double Deck" aria-label="View Double Deck photos"><img src="images/double-deck-01.jpg" alt="Double Deck at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">12 photos</span></div><a href="images/double-deck-02.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-03.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-04.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-05.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-06.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-07.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-08.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-09.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-10.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-11.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a><a href="images/double-deck-12.jpg" class="gallery-link" data-gallery="double-deck" data-title="Double Deck" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Double Deck</h3><p class="room-desc">Double-deck beds for friends and small groups sharing a room.</p>
+        <p class="room-guests">4 guests included &middot; 5 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;1,800</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;2,500</strong><small>24-hour stay</small></div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ROOMS -->
-  <section id="rooms">
-    <div class="rooms-header" data-aos="fade-up">
-      <div>
-        <span class="section-tag">Accommodations</span>
-        <h2 class="section-title">Our <em>Signature</em> Rooms</h2>
-        <div class="section-line"></div>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Double Deck">Ask about this room</a>
+    </article>
+<article class="room-card" data-room="Family Room" data-capacity="8" data-included="6">
+      <div class="room-img"><a href="images/family-room-01.jpg" class="room-img-link gallery-link" data-gallery="family-room" data-title="Family Room" aria-label="View Family Room photos"><img src="images/family-room-01.jpg" alt="Family Room at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">6 photos</span></div><a href="images/family-room-02.jpg" class="gallery-link" data-gallery="family-room" data-title="Family Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/family-room-03.jpg" class="gallery-link" data-gallery="family-room" data-title="Family Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/family-room-04.jpg" class="gallery-link" data-gallery="family-room" data-title="Family Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/family-room-05.jpg" class="gallery-link" data-gallery="family-room" data-title="Family Room" hidden tabindex="-1" aria-hidden="true"></a><a href="images/family-room-06.jpg" class="gallery-link" data-gallery="family-room" data-title="Family Room" hidden tabindex="-1" aria-hidden="true"></a>
+      <div class="room-body"><h3>Family Room</h3><p class="room-desc">A shared room with loft-style beds for families and larger groups.</p>
+        <p class="room-guests">6 guests included &middot; 8 guests maximum</p>
+        <p class="room-extra">Extra guest: &#8369;250. Confirm charge period with us.</p>
+        <ul class="room-features" aria-label="Room amenities"><li>Air conditioning</li><li>WiFi</li><li>Private bath</li></ul>
+        <div class="room-rates" aria-label="Walk-in rates"><div class="room-rate" data-duration="12"><strong>&#8369;3,000</strong><small>12-hour stay</small></div><div class="room-rate" data-duration="24"><strong>&#8369;4,000</strong><small>24-hour stay</small></div></div>
       </div>
-      <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="btn-outline" style="white-space:nowrap;">View All &amp; Book</a>
-    </div>
-    <div class="rooms-grid">
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="room-img">
-          <a href="images/regular-room-01.jpg" class="room-img-link glightbox" data-gallery="regular-room" data-glightbox="title: Regular Room">
-            <img src="images/regular-room-01.jpg" alt="Regular Room with double bed" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/regular-room-02.jpg" class="glightbox" data-gallery="regular-room" data-glightbox="title: Regular Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="room-type-tag">Classic</span>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 2 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Regular Room</div>
-          <p class="room-desc">A cozy, air-conditioned room with a double bed — perfect for solo travelers or couples seeking comfort and value.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱1,000</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱1,800</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 2 <span class="dot-sep">·</span> +₱250 per extra(max 3)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="room-img">
-          <a href="images/veranda-room-01.jpg" class="room-img-link glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony">
-            <img src="images/veranda-room-01.jpg" alt="Standard Balcony room with private balcony" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/veranda-room-02.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-03.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-04.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-05.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-06.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-07.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-08.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-09.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-10.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-11.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-room-12.jpg" class="glightbox" data-gallery="veranda-room" data-glightbox="title: Standard Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 12 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Standard Balcony</div>
-          <p class="room-desc">An air-conditioned room with a private balcony — enjoy fresh air and scenic views right from your doorstep.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱1,300</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱2,100</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 2 <span class="dot-sep">·</span> +₱250 per extra(max 3)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="room-img">
-          <a href="images/suite-room-01.jpg" class="room-img-link glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room">
-            <img src="images/suite-room-01.jpg" alt="Premium Suite Room interior" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/suite-room-02.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-03.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-04.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-05.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-06.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-07.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-08.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/suite-room-09.jpg" class="glightbox" data-gallery="suite-room" data-glightbox="title: Suite Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 9 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Suite Room</div>
-          <p class="room-desc">A premium air-conditioned suite with extra space and comfort — ideal for guests who want a more elevated stay.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱1,200</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱2,000</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 2 <span class="dot-sep">·</span> +₱250 per extra(max 3)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="room-img">
-          <a href="images/twin-room-01.jpg" class="room-img-link glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room">
-            <img src="images/twin-room-01.jpg" alt="Twin Room with two single beds" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/twin-room-02.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-03.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-04.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-05.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-06.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-07.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-08.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Bathroom" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-09.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Bathroom" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-10.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Lavatory" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/twin-room-11.jpg" class="glightbox" data-gallery="twin-room" data-glightbox="title: Twin Room — Shower" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 11 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Twin Room</div>
-          <p class="room-desc">A clean, air-conditioned room with two single beds — a great option for friends or colleagues traveling together.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱1,200</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱2,000</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 2 <span class="dot-sep">·</span> +₱250 per extra(max 3)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="room-img">
-          <a href="images/veranda-deluxe-01.jpg" class="room-img-link glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony">
-            <img src="images/veranda-deluxe-01.jpg" alt="Deluxe Balcony room interior" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/veranda-deluxe-02.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-03.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-04.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-05.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-06.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-07.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-08.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-09.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/veranda-deluxe-10.jpg" class="glightbox" data-gallery="veranda-deluxe" data-glightbox="title: Deluxe Balcony" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="room-type-tag">Popular</span>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 10 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Deluxe Balcony</div>
-          <p class="room-desc">A spacious deluxe room with a private balcony — the perfect blend of comfort, style, and relaxation.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱1,500</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱2,200</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 2 <span class="dot-sep">·</span> +₱250 per extra(max 3)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="room-img">
-          <a href="images/double-deck-01.jpg" class="room-img-link glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck">
-            <img src="images/double-deck-01.jpg" alt="Double Deck Room with bunk beds" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/double-deck-02.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-03.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-04.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-05.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-06.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-07.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-08.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-09.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-10.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-11.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/double-deck-12.jpg" class="glightbox" data-gallery="double-deck" data-glightbox="title: Double Deck" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 12 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Double Deck</div>
-          <p class="room-desc">A room with double-deck beds accommodating up to 5 — perfect for groups and barkadas on a budget.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱1,800</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱2,500</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 4 <span class="dot-sep">·</span> +₱250 per extra(max 5)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="room-img">
-          <a href="images/family-room-01.jpg" class="room-img-link glightbox" data-gallery="family-room" data-glightbox="title: Family Room">
-            <img src="images/family-room-01.jpg" alt="Spacious Family Room" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/family-room-02.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/family-room-03.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/family-room-04.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/family-room-05.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/family-room-06.jpg" class="glightbox" data-gallery="family-room" data-glightbox="title: Family Room" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="room-type-tag">Premium</span>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 6 photos</span>
-        </div>
-        <div class="room-body">
-          <div class="room-name">Family Room</div>
-          <p class="room-desc">Our largest and most spacious room — designed for families who want plenty of space and maximum comfort.</p>
-          <div class="room-rates">
-            <span class="room-rate"><strong>₱3,000</strong><small>/ 12hrs</small></span>
-            <span class="room-rate"><strong>₱4,000</strong><small>/ 24hrs</small></span>
-          </div>
-          <div class="room-meta">
-            <div class="room-guests"><i class="fas fa-user"></i> Sleeps 6 <span class="dot-sep">·</span> +₱250 per extra(max 8)</div>
-          </div>
-        </div>
-        <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="room-link">Reserve Now</a>
-      </div>
-
-    </div>
-    <p class="rates-note" data-aos="fade-up">
-      Walk-in rates shown. Group, long-stay, or corporate bookings — <a href="https://m.me/dudiceinn" target="_blank">message us on Facebook</a> for tailored rates.
-    </p>
-  </section>
-
-  <!-- EXPLORE THE HOTEL -->
-  <section id="explore">
-    <div class="rooms-header" data-aos="fade-up">
-      <div>
-        <span class="section-tag">Tour</span>
-        <h2 class="section-title">Explore <em>the Hotel</em></h2>
-        <div class="section-line"></div>
-      </div>
-    </div>
-    <div class="rooms-grid">
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="room-img">
-          <a href="images/lobby-01.jpg" class="room-img-link glightbox" data-gallery="lobby" data-glightbox="title: The Lobby">
-            <img src="images/lobby-01.jpg" alt="Hotel lobby interior" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 1 photo</span>
-        </div>
-        <div class="room-body" style="padding-bottom:1.8rem;">
-          <div class="room-name">The Lobby</div>
-          <p class="room-desc">Step inside and feel right at home — our welcoming lobby is the start of every great stay.</p>
-        </div>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="room-img">
-          <a href="images/hallway-01.jpg" class="room-img-link glightbox" data-gallery="hallway" data-glightbox="title: Hallways">
-            <img src="images/hallway-01.jpg" alt="Hotel hallway" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/hallway-02.jpg" class="glightbox" data-gallery="hallway" data-glightbox="title: Hallways" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/hallway-03.jpg" class="glightbox" data-gallery="hallway" data-glightbox="title: Hallways" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/hallway-04.jpg" class="glightbox" data-gallery="hallway" data-glightbox="title: Hallways" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 4 photos</span>
-        </div>
-        <div class="room-body" style="padding-bottom:1.8rem;">
-          <div class="room-name">Hallways</div>
-          <p class="room-desc">Bright, well-kept corridors connecting our new and original wings — easy to navigate, day or night.</p>
-        </div>
-      </div>
-
-      <div class="room-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="room-img">
-          <a href="images/building-01.jpg" class="room-img-link glightbox" data-gallery="building" data-glightbox="title: The Buildings">
-            <img src="images/building-01.jpg" alt="Hotel exterior building" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </a>
-          <a href="images/building-02.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-03.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-04.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-05.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-06.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-07.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-08.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-09.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-10.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <a href="images/building-11.jpg" class="glightbox" data-gallery="building" data-glightbox="title: The Buildings" style="display:none" aria-hidden="true" tabindex="-1"></a>
-          <div class="room-img-overlay"></div>
-          <span class="gallery-badge"><i class="fas fa-images"></i> 11 photos</span>
-        </div>
-        <div class="room-body" style="padding-bottom:1.8rem;">
-          <div class="room-name">The Buildings</div>
-          <p class="room-desc">Take a look at the hotel grounds — clean modern lines of the new building, and the charm of the original.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- AMENITIES -->
-  <section id="amenities">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div style="text-align:center;max-width:560px;margin:0 auto;" data-aos="fade-up">
-        <span class="section-tag">What We Offer</span>
-        <h2 class="section-title">Amenities &amp; <em>Services</em></h2>
-        <div class="section-line" style="margin:0 auto 1rem;"></div>
-        <p class="section-sub" style="margin:0 auto;">Everything you need for an exceptional stay, thoughtfully curated for your comfort.</p>
-      </div>
+      <a href="https://m.me/dudiceinn" class="btn btn-outline room-link" target="_blank" rel="noopener" aria-label="Ask about the Family Room">Ask about this room</a>
+    </article></div>
+      <p id="no-rooms" hidden>No single room fits this group. <a href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message us about multiple rooms or a group booking.</a></p>
+      <p class="rates-note">Walk-in rates shown are for the included guests. Extra guests cost &#8369;250 each; please confirm the charge period and final total with our team. Reservations, group stays, and corporate rates are confirmed on inquiry. Availability is confirmed before payment.</p>
+    </div></section>
+    <section class="section" id="amenities" aria-labelledby="amenities-title"><div class="wrap">
+      <div class="section-heading"><div><span class="eyebrow">The everyday essentials</span><h2 id="amenities-title">Settle in. <em>Feel at home.</em></h2><p class="section-intro">Practical comforts for a restful stop or a longer visit.</p></div></div>
       <div class="amenities-grid">
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="amenity-icon"><i class="fas fa-wifi"></i></div>
-          <div class="amenity-name">High-Speed WiFi</div>
-          <p class="amenity-desc">Stay connected with complimentary high-speed internet throughout the property.</p>
-        </div>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="amenity-icon"><i class="fas fa-snowflake"></i></div>
-          <div class="amenity-name">Air Conditioning</div>
-          <p class="amenity-desc">Individual climate control in every room for your perfect comfort temperature.</p>
-        </div>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="amenity-icon"><i class="fas fa-concierge-bell"></i></div>
-          <div class="amenity-name">24/7 Service</div>
-          <p class="amenity-desc">Our dedicated staff is always available to cater to your every need, day or night.</p>
-        </div>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="amenity-icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="amenity-name">Security</div>
-          <p class="amenity-desc">Round-the-clock security ensuring your safety and peace of mind throughout your stay.</p>
-        </div>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="amenity-icon"><i class="fas fa-parking"></i></div>
-          <div class="amenity-name">Free Parking</div>
-          <p class="amenity-desc">Complimentary secure parking available for all our guests.</p>
-        </div>
-        <a class="amenity-card glightbox" href="images/streaming-01.jpg" data-gallery="streaming" data-glightbox="title: In-Room Streaming" data-aos="fade-up" data-aos-delay="100">
-          <div class="amenity-icon"><i class="fas fa-play"></i></div>
-          <div class="amenity-name">In-Room Streaming</div>
-          <p class="amenity-desc">Indulge in curated entertainment on our private in-room streaming platform — featuring Netflix, Apple TV+, Prime Video, and more. Your favorite content, beautifully on demand.</p>
-          <span class="amenity-card-tip"><i class="fas fa-images"></i> View photos</span>
-        </a>
-        <a href="images/streaming-02.jpg" class="glightbox" data-gallery="streaming" data-glightbox="title: In-Room Streaming" style="display:none" aria-hidden="true" tabindex="-1"></a>
-        <a href="images/streaming-03.jpg" class="glightbox" data-gallery="streaming" data-glightbox="title: In-Room Streaming" style="display:none" aria-hidden="true" tabindex="-1"></a>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="amenity-icon"><i class="fas fa-bath"></i></div>
-          <div class="amenity-name">Private Bath</div>
-          <p class="amenity-desc">Luxurious private bathrooms with premium toiletries for a spa-like experience.</p>
-        </div>
-        <div class="amenity-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="amenity-icon"><i class="fas fa-mobile-alt"></i></div>
-          <div class="amenity-name">Online Booking</div>
-          <p class="amenity-desc">Easy, secure online reservations with instant confirmation.</p>
-        </div>
+        <article class="amenity"><i class="fas fa-wifi" aria-hidden="true"></i><h3>Free WiFi</h3><p>Stay connected while you're away from home.</p></article>
+        <article class="amenity"><i class="fas fa-snowflake" aria-hidden="true"></i><h3>Air conditioning</h3><p>A cool, comfortable place to return to after your day.</p></article>
+        <article class="amenity"><i class="fas fa-concierge-bell" aria-hidden="true"></i><h3>24-hour service</h3><p>Our team is here to help, day or night.</p></article>
+        <article class="amenity"><i class="fas fa-parking" aria-hidden="true"></i><h3>Free parking</h3><p>Bringing a vehicle? Let us know when you inquire.</p></article>
+        <article class="amenity"><i class="fas fa-bath" aria-hidden="true"></i><h3>Private bathroom</h3><p>Your own bathroom for a more comfortable stay.</p></article>
+        <article class="amenity"><i class="fas fa-tv" aria-hidden="true"></i><h3>In-room entertainment</h3><p>Ask our team about entertainment options for your chosen room.</p><a href="images/streaming-01.jpg" class="gallery-link" data-gallery="streaming" data-title="In-room entertainment">View photos</a><a href="images/streaming-02.jpg" class="gallery-link" data-gallery="streaming" data-title="In-room entertainment" hidden tabindex="-1" aria-hidden="true"></a><a href="images/streaming-03.jpg" class="gallery-link" data-gallery="streaming" data-title="In-room entertainment" hidden tabindex="-1" aria-hidden="true"></a></article>
+        <article class="amenity"><i class="fas fa-clock" aria-hidden="true"></i><h3>Flexible arrival</h3><p>Choose a 12- or 24-hour stay, counted from your check-in time.</p></article>
+        <article class="amenity"><i class="fas fa-comment" aria-hidden="true"></i><h3>Direct assistance</h3><p>Message or call us for availability, room advice, and booking help.</p></article>
       </div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <div id="quote">
-    <p class="quote-text" data-aos="fade-up">
-      "Luxury is not about having the most expensive things — it is about creating
-      an experience so seamless, so warm, that guests never want to leave."
-    </p>
-    <span class="quote-author" data-aos="fade-up" data-aos-delay="100">— Dudice Hotel Philosophy</span>
-  </div>
-
-  <!-- CTA -->
-  <section id="cta">
-    <div class="cta-glow"></div>
-    <span class="section-tag" data-aos="fade-up">Begin Your Journey</span>
-    <h2 class="cta-title" data-aos="fade-up" data-aos-delay="100">
-      Ready for an <em>Unforgettable</em><br>Experience?
-    </h2>
-    <p class="cta-sub" data-aos="fade-up" data-aos-delay="200">
-      Reserve your room today and let us craft the perfect stay for you.
-    </p>
-    <div class="cta-btns" data-aos="fade-up" data-aos-delay="300">
-      <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="btn-primary">Book Your Stay</a>
-      <a href="https://m.me/dudiceinn" target="_blank" rel="noopener" class="btn-outline">Check Reservation</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">DUDICE HOTEL</div>
-        <p class="footer-desc">Where every moment is crafted with elegance, care, and an unwavering commitment to your comfort and satisfaction.</p>
-      </div>
-      <div>
-        <div class="footer-col-title">Quick Links</div>
-        <ul class="footer-links">
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#rooms">Our Rooms</a></li>
-          <li><a href="#amenities">Amenities</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="https://m.me/dudiceinn" target="_blank" rel="noopener">Book Now</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Reservations</div>
-        <ul class="footer-links">
-          <li><a href="https://m.me/dudiceinn" target="_blank" rel="noopener">Book on Messenger</a></li>
-          <li><a href="https://m.me/dudiceinn" target="_blank" rel="noopener">Check Status</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Dudice Hotel. All rights reserved.</span>
-      <div class="footer-socials">
-        <a href="https://www.facebook.com/dudiceinn" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.google.com/maps/place/Dudice+Travellers+Inn/@14.4627757,120.5391242,17z/" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- FLOATING CHAT BUTTONS -->
-
-  <!-- SCRIPTS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    if (typeof GLightbox !== 'undefined') {
-      GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
-    }
-  </script>
-
-
-  <script>
-    // ─── AOS ───
-    AOS.init({ duration: 800, once: true, offset: 80 });
-
-    // ─── CUSTOM CURSOR ───
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animCursor() {
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-      rx += (mx - rx) * .12; ry += (my - ry) * .12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animCursor);
-    }
-    animCursor();
-    document.querySelectorAll('a,button,.room-card,.amenity-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(2)';
-        ring.style.transform   = 'translate(-50%,-50%) scale(1.5)';
-        ring.style.borderColor = '#5bbec4';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-        ring.style.transform   = 'translate(-50%,-50%) scale(1)';
-        ring.style.borderColor = '#0e8a8a';
-      });
-    });
-
-    // ─── SCROLL PROGRESS ───
-    window.addEventListener('scroll', () => {
-      const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      document.getElementById('progress-bar').style.width = pct + '%';
-    });
-
-    // ─── NAVBAR ───
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-
-    // ─── PARTICLES ───
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 900 } },
-        color: { value: '#0e8a8a' },
-        shape: { type: 'circle' },
-        opacity: { value: .25, random: true, anim: { enable: true, speed: .6, opacity_min: .05 } },
-        size: { value: 2, random: true },
-        line_linked: { enable: true, distance: 140, color: '#0e8a8a', opacity: .1, width: 1 },
-        move: { enable: true, speed: .6, direction: 'none', random: true, out_mode: 'out' }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
-        modes: { grab: { distance: 180, line_linked: { opacity: .3 } }, push: { particles_nb: 3 } }
-      },
-      retina_detect: true
-    });
-
-    // ─── MOBILE MENU ───
-    const hamburger = document.querySelector('.nav-hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-    document.querySelectorAll('.mobile-menu-link').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  </script>
+    </div></section>
+    <section class="section tour-section" id="explore" aria-labelledby="explore-title"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">A look around</span><h2 id="explore-title">Get to know <em>Dudice.</em></h2><p class="section-intro">Real photos of the spaces that will welcome you.</p></div></div><div class="tour-grid"><article class="tour-card"><div class="room-img"><a href="images/lobby-01.jpg" class="room-img-link gallery-link" data-gallery="lobby" data-title="A warm welcome" aria-label="View A warm welcome photos"><img src="images/lobby-01.jpg" alt="A warm welcome at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">1 photo</span></div><h3>A warm welcome</h3><p>Take a look at our reception area.</p></article>
+<article class="tour-card"><div class="room-img"><a href="images/hallway-01.jpg" class="room-img-link gallery-link" data-gallery="hallway" data-title="Around the hotel" aria-label="View Around the hotel photos"><img src="images/hallway-01.jpg" alt="Around the hotel at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">4 photos</span></div><a href="images/hallway-02.jpg" class="gallery-link" data-gallery="hallway" data-title="Around the hotel" hidden tabindex="-1" aria-hidden="true"></a><a href="images/hallway-03.jpg" class="gallery-link" data-gallery="hallway" data-title="Around the hotel" hidden tabindex="-1" aria-hidden="true"></a><a href="images/hallway-04.jpg" class="gallery-link" data-gallery="hallway" data-title="Around the hotel" hidden tabindex="-1" aria-hidden="true"></a><h3>Around the hotel</h3><p>Get a feel for the spaces between your room and your next outing.</p></article>
+<article class="tour-card"><div class="room-img"><a href="images/building-01.jpg" class="room-img-link gallery-link" data-gallery="building" data-title="Your stay in Mariveles" aria-label="View Your stay in Mariveles photos"><img src="images/building-01.jpg" alt="Your stay in Mariveles at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"></a><span class="gallery-badge">11 photos</span></div><a href="images/building-02.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-03.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-04.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-05.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-06.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-07.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-08.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-09.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-10.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><a href="images/building-11.jpg" class="gallery-link" data-gallery="building" data-title="Your stay in Mariveles" hidden tabindex="-1" aria-hidden="true"></a><h3>Your stay in Mariveles</h3><p>See the property before you arrive.</p></article></div></div></section>
+    <section class="section wrap about" id="about" aria-labelledby="about-title"><img src="images/lobby-01.jpg" alt="Reception area at Dudice Hotel" width="1600" height="1066" loading="lazy" decoding="async"><div><span class="eyebrow">A little about us</span><h2 id="about-title">Local hospitality.<br><em>Simple comforts.</em></h2><p>Along Roman Highway in Alas-Asin, Dudice Hotel welcomes travelers to Mariveles with comfortable rooms and warm Filipino hospitality.</p><p>Whether you're visiting for work, traveling with friends, or stopping with family, we're here to help you find a room that fits.</p><p><a class="text-link" href="#contact">Find us in Mariveles</a></p></div></section>
+    <section class="section booking-steps" id="how-to-book" aria-labelledby="booking-title"><div class="wrap"><span class="eyebrow">Plan your stay</span><h2 id="booking-title">A few simple steps to check-in.</h2><ol class="steps-grid"><li><h3>Choose your room</h3><p>Browse photos and rates. Tell us your preferred room, arrival time, stay length, and number of guests.</p></li><li><h3>Confirm the details</h3><p>Our team checks availability and confirms your rate, deposit, and arrival arrangements in Messenger or by phone.</p></li><li><h3>Receive confirmation</h3><p>Your reservation is confirmed after the required deposit is received and verified. Keep your confirmation for arrival.</p></li></ol><a class="btn" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Start a conversation on Messenger</a></div></section>
+    <section class="section wrap" id="contact" aria-labelledby="contact-title"><div class="contact-grid"><div><span class="eyebrow">See you in Bataan</span><h2 id="contact-title">Easy to find.<br><em>Happy to help.</em></h2><dl class="contact-details"><div><dt>Address</dt><dd>Roman Highway, Alas-Asin, Mariveles, Bataan</dd></div><div><dt>Call us</dt><dd><a href="tel:+639951302152">+63 995 130 2152</a></dd></div><div><dt>Email</dt><dd><a href="mailto:dudiceinn@gmail.com">dudiceinn@gmail.com</a></dd></div><div><dt>Arrival &amp; departure</dt><dd>Flexible arrival. Your 12- or 24-hour stay starts at check-in. Please confirm room availability before traveling.</dd></div></dl><a class="btn" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message our team</a></div><div><iframe class="contact-map" title="Google Maps location of Dudice Hotel in Mariveles, Bataan" src="https://www.google.com/maps?q=Dudice+Travellers+Inn,+Mariveles,+Bataan&amp;z=17&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe><div class="map-links"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Dudice+Travellers+Inn+Mariveles+Bataan" target="_blank" rel="noopener">Get directions &#8599;</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Dudice+Travellers+Inn+Mariveles+Bataan" target="_blank" rel="noopener">View hotel &amp; reviews on Google &#8599;</a></div></div></div></section>
+    <section class="section faq" id="faq" aria-labelledby="faq-title"><div class="wrap faq-grid"><div><span class="eyebrow">Before you arrive</span><h2 id="faq-title">A few useful <em>answers.</em></h2><p class="section-intro">Something else on your mind? <a href="tel:+639951302152">Give us a call.</a></p></div><div>
+      <details><summary>What time can I check in?</summary><p>Arrival is flexible, subject to room availability. Your booked 12 or 24 hours start from your actual check-in time. Please tell us your expected arrival time so our team can confirm arrangements.</p></details>
+      <details><summary>Are the displayed rates for reservations?</summary><p>The room cards show walk-in rates for the included guests. Contact our team for your reservation rate, availability, and any group or long-stay arrangements.</p></details>
+      <details><summary>How do I confirm a reservation?</summary><p>Message us with your room choice, arrival details, stay length, and guest count. Our team will confirm availability and payment instructions. A booking is confirmed only after the required deposit is received and verified. See our <a href="terms.html">booking terms</a>.</p></details>
+      <details><summary>Can I bring extra guests?</summary><p>Each room lists the included and maximum number of guests. Extra guests cost &#8369;250 each. Confirm the charge period, sleeping arrangements, and final total with our team before booking.</p></details>
+      <details><summary>What if I need to change or cancel my stay?</summary><p>Contact us as soon as possible. Changes depend on availability, and cancellation charges may apply. Read the <a href="terms.html#cancellation">cancellation and refund policy</a> before paying.</p></details>
+      <details><summary>Is parking available?</summary><p>We offer free parking. Let us know if you are bringing a vehicle, especially when arranging a group stay.</p></details>
+      <details><summary>How can I check an existing reservation?</summary><p>Reply in your existing Messenger conversation, or <a href="tel:+639951302152">call +63 995 130 2152</a> with your booking name and arrival date. Our team can help confirm the status.</p></details>
+    </div></div></section>
+  </main>
+  <footer><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#"><strong>DUDICE</strong><span>HOTEL &middot; MARIVELES</span></a><p>A comfortable base in Bataan, with a warm welcome and room for your kind of stay.</p></div><div><h2>Explore</h2><div class="footer-links"><a href="#rooms">Rooms &amp; rates</a><a href="#explore">Photo gallery</a><a href="#about">About us</a><a href="#contact">Location &amp; contact</a><a href="#faq">Frequently asked questions</a></div></div><div><h2>Let's talk</h2><div class="footer-links"><a href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message on Messenger &#8599;</a><a href="tel:+639951302152">+63 995 130 2152</a><a href="mailto:dudiceinn@gmail.com">Email our team</a><a href="https://www.facebook.com/dudiceinn" target="_blank" rel="noopener">Visit our Facebook page &#8599;</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Dudice Hotel. All rights reserved.</span><span><a href="privacy.html">Privacy policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Booking terms</a></span></div></div></footer>
+  <div class="mobile-actions" aria-label="Quick contact"><a class="btn" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Message to book</a><a class="btn btn-outline" href="tel:+639951302152">Call the hotel</a></div>
+  <dialog id="inquiry-dialog" aria-labelledby="inquiry-title" aria-describedby="inquiry-intro"><div class="dialog-heading"><h2 id="inquiry-title">Ask about a room</h2><button type="button" class="close-button" data-close>Close</button></div><p class="dialog-intro" id="inquiry-intro">Prepare your inquiry, then copy and paste it into Messenger. Our team will confirm availability and your final rate.</p>
+    <form id="inquiry-form"><div class="form-grid"><label>Arrival date (optional)<input type="date" id="arrival-date"></label><label>Arrival time (optional)<input type="time" id="arrival-time"></label><label>Stay length<select id="inquiry-duration"><option value="12">12 hours</option><option value="24">24 hours</option></select></label><label>Guests<select id="inquiry-guests"></select></label></div><label for="inquiry-summary">Your message</label><textarea id="inquiry-summary" rows="6" readonly></textarea><div class="dialog-actions"><button class="btn" type="submit">Copy inquiry</button><a class="btn btn-outline" href="https://m.me/dudiceinn" target="_blank" rel="noopener">Open Messenger &#8599;</a></div><p class="status" id="copy-status" role="status"></p><p class="inquiry-note">Opening Messenger does not send this message or reserve a room. Paste your inquiry into the chat to continue. Your choices stay on this page until you send them.</p><p class="inquiry-note">Prefer email? <a id="email-inquiry" href="mailto:dudiceinn@gmail.com">Email this inquiry</a>, or <a href="tel:+639951302152">call us</a>.</p></form>
+  </dialog>
+  <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-title"><div class="dialog-heading"><h2 id="gallery-title">Hotel photos</h2><button class="close-button" type="button" data-close>Close</button></div><img id="gallery-image" alt=""><div class="gallery-controls"><button type="button" id="gallery-prev" aria-label="Previous photo">&#8592; Previous</button><p id="gallery-count" role="status"></p><button type="button" id="gallery-next" aria-label="Next photo">Next &#8594;</button></div><p id="gallery-error" class="status" role="status"></p></dialog>
 </body>
 </html>
